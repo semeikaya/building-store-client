@@ -16,7 +16,8 @@
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
-  height: 900px;
+  height: calc(var(--index) * 50);
+  max-height: 900px;
   position: relative;
   position: absolute;
   width: 100%;
@@ -107,10 +108,43 @@
 }
 
 .material_block {
+    position: relative;
+}
+
+.material_find{
+    display: none;
+}
+
+.show{
+    border: none;
+    border-radius: 5px;
+    width: 100%;
+    background-color: white;
+    color: black;
+    font-size: calc(var(--index) * 1);
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    position: absolute;
+    min-height: 200px;
+    margin-top: 5px;
+    padding-left: 20px;
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+}
+.product_names{
+    margin-top: 15px;
+    text-align: left;
+    max-width: 90%;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    border-bottom: .4px solid rgba(128, 128, 128, 0.092);
+    padding-bottom: 5px;
 }
 
 input {
-  height: 60px;
+  height: calc(var(--index) * 2.5);
   width: 100%;
   border-radius: 5px;
   border: none;
