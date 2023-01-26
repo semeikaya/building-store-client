@@ -26,17 +26,18 @@
   width: 30%;
 }
 
-.link {
+.link, .active{
   text-decoration: none;
   color: white;
   cursor: pointer;
 }
 
-.selected {
+.active {
   height: 112px;
   display: flex;
   align-items: center;
   border-bottom: 2px solid #ff6b00;
+  
 }
 
 .whole_info {
