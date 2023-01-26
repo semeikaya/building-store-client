@@ -9,6 +9,7 @@ const Header = () => {
 
     return <>
         <div className={styles.header}>
+        <div className={styles.substrate}></div>
         <div className={styles.main_of_header}>
             <div className={styles.logotype}>
                 <h1 className={styles.textOfLogotype}>Союз Логистик</h1>
