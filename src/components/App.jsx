@@ -3,6 +3,8 @@ import "./App.css";
 import Header from "./Header/Header";
 import Layout from "./Layout/Layout";
 import Main from "./Main/Main";
+import Contact from '../pages/Contact/Contact'
+
 function App() {
   return (
     <div className="App">
@@ -11,11 +13,11 @@ function App() {
           <Route index element={<Main />} />
           <Route path="about" element={<Main />} />
           <Route path="reviews" element={<Main />} />
-          <Route path="contacts" element={<Main />} />
+          <Route path="contacts" element={<Contact />} />
         </Route>
       </Routes>
     </div>
   );
-}
+} 
 
 export default App;
