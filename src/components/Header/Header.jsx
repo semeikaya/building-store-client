@@ -1,12 +1,9 @@
-import { Link } from "react-router-dom"
+import { Link, NavLink } from "react-router-dom"
 import styles from "./Header.module.css"
 import basket from "./basket.png"
 import { useState } from "react"
 
 const Header = () => {
-    const [select, addSelect] = useState("main")
-
-
     return <>
         <div className={styles.header}>
         <div className={styles.substrate}></div>
@@ -15,10 +12,11 @@ const Header = () => {
                 <h1 className={styles.textOfLogotype}>Союз Логистик</h1>
             </div>
             <div className={styles.whole_info}>
-                <Link to="/" className={`${styles.link} ${select === "main" ? styles.selected : null}`} onClick={() => {addSelect("main")}}>Главная</Link>
-                <Link to="/about" className={`${styles.link} ${select === "about" ? styles.selected : null}`} onClick={() => {addSelect("about")}}>О компании</Link>
-                <Link to="/reviews" className={`${styles.link} ${select === "reviews" ? styles.selected : null}`} onClick={() => {addSelect("reviews")}}>Отзывы</Link>
-                <Link to="/contacts" className={`${styles.link} ${select === "contacts" ? styles.selected : null}`} onClick={() => {addSelect("contacts")}}>Контакты</Link>
+
+            <NavLink to="/" className={({isActive}) => isActive ? styles.active : styles.link}>Главная</NavLink>
+            <NavLink to="/about" className={({isActive}) => isActive ? styles.active : styles.link}>О компании</NavLink>
+            <NavLink to="/reviews" className={({isActive}) => isActive ? styles.active : styles.link}>Отзывы</NavLink>
+            <NavLink to="/contacts" className={({isActive}) => isActive ? styles.active : styles.link}>Контакты</NavLink>
                 <img src={basket} alt="basket" />
 
             </div>
