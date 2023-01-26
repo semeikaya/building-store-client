@@ -1,32 +1,25 @@
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { getProducts } from "../../features/productsSlice"
+import { autocompleteProducts, getProducts } from "../../features/productsSlice"
 import styles from "./Main.module.css"
 
 const Main = () => {
 
     const dispatch = useDispatch()
-    const arr = useSelector(state => state.productsReducer)
-
+    const products = useSelector(state => state.productsReducer.products)
+    const [value,setValue ] = useState("")
+    const [cards,showCards ] = useState("")
     useEffect(() => {
-        dispatch(getProducts());
-      }, [dispatch]);
+        dispatch(autocompleteProducts(value));
+      }, [dispatch, value]);
 
 
-      const [prod, setProd] = useState(arr)
-      const [cards,showCards ] = useState("")
-      const [value,setValue ] = useState("")
-
-
-    
       const findArr = (e) => {
-          setProd(arr.filter(item => {
-            return item.name.toLowerCase().trim().indexOf(e.target.value.toLowerCase().trim()) != -1 ? item : null
-          }))
           if(e.target.value != ""){
             showCards("show")
           }else{
             showCards("")
+
           }
           setValue(e.target.value)
       }
@@ -49,10 +42,10 @@ const Main = () => {
                         <p>Материал</p>
                         <input type="text" onChange={findArr} className={styles.material_input} value={value} placeholder="Выберите материал"/>
                         <div className={`${styles.material_find} ${cards === "show" ? styles.show : null}`}>{
-                    prod.map(item => {
-            return <button onClick={() => handleSel(item.name)} className={styles.product_names}>{item.name}</button>
+                    products.length > 0 ? products.map(item => {
+            return <button onClick={() => handleSel(item.productName)} className={styles.product_names}>{item.productName}</button>
             
-          })}</div>
+          }) : null}</div>
                     </div>
                     <div className={styles.address_block}>
                         <p>Адрес доставки</p>
