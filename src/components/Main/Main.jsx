@@ -1,6 +1,15 @@
+import { useEffect } from "react"
+import { useDispatch, useSelector } from "react-redux"
+import { getProducts } from "../../features/productsSlice"
 import styles from "./Main.module.css"
 
 const Main = () => {
+    const dispatch = useDispatch()
+    const products = useSelector(state => state.productsReducer)
+    console.log(products)
+    useEffect(() => {
+        dispatch(getProducts());
+      }, [dispatch]);
     return <>
         <div className={styles.calculation_window}>
                 <div className={styles.calc_center}>
