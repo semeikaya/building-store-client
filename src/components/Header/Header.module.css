@@ -19,7 +19,7 @@
   align-items: center;
   border-bottom: 1px solid rgba(128, 128, 128, 0.422);
   position: relative;
-  z-index: 100;
+  z-index: 10;
 }
 
 .logotype {
