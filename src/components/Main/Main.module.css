@@ -321,7 +321,7 @@ input {
   justify-content: space-between;
   width: 100%;
   align-items: end;
-  margin-top: 2px;
+  margin-top: calc(var(--index) * .1);
 }
 
 .line{
