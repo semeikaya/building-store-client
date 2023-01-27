@@ -1,0 +1,15 @@
+*{
+  box-sizing: border-box;
+  font-family: 'Gotham Pro', Arial, sans-serif;
+}
+
+.catr_main_box{
+  background-color: rgb(235, 224, 224);
+  width: 65%;
+  margin: auto;
+  padding-top: 50px;
+}
+.cart_title{
+  font-size: 42px;
+  font-weight: 700;
+}
