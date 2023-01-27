@@ -8,6 +8,8 @@ import viber from "../Contact/img.contact/Viber.png";
 import telegram from "../Contact/img.contact/telegram 1.png";
 import fb from "../Contact/img.contact/facebook.png"
 
+import Feedback from "../../components/Feedback/Feedback";
+
 const Contact = () => {
   return (
     <>
@@ -56,7 +58,9 @@ const Contact = () => {
             <a href="dfdsf"><img className={styles.facebook} src={fb} alt="" /></a>
           </div>
         </div>
+        
       </div>
+      <Feedback />
     </>
   );
 };
