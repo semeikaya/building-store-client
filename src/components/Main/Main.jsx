@@ -69,7 +69,7 @@ const Main = () => {
         changeSelect("true")
 
       }
-
+      
     return <>
         <div className={styles.calculation_window}>
                 <div className={styles.calc_center}>
@@ -117,10 +117,11 @@ const Main = () => {
                   <Card products={products} count={Number(metres3)} />
 
                   </div>
-        <button onClick={() => setBol("false")} style={{position: "absolute"}} className={`${bol === "true" ? styles.podlozhka : null} `}>
+        <button onClick={() => setBol("false")} style={{position: "fixed"}} className={`${bol === "true" ? styles.podlozhka : null} `}>
 
 
             </button>
+            
     </>
 }
 
