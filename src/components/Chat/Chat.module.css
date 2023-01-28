@@ -66,12 +66,12 @@ transition: cubic-bezier(.27,.4,.69,1.01);
 }
 
 .flag{
-    width: calc(var(--index) * 4.4);
+    width: calc(var(--index) * 15.8);
     height: calc(var(--index) * 1.7);
     position: fixed;
     z-index: 107;
     background-color: rgb(255, 255, 255);
-    right: -2px;
+    right: calc(var(--index) * -11.8);
     bottom: calc(((100vh) - 1vh * 95));
     text-align: start;
     margin: 0;
@@ -193,14 +193,6 @@ transition: cubic-bezier(.27,.4,.69,1.01);
     }
 }
 
-@keyframes flag {
-    0% {
-        transform: translateX(90px);
-    }
-    100% {
-        transform: translateX(0px);
-    }
-}
 
 
 .chat_blocks{
@@ -212,4 +204,23 @@ transition: cubic-bezier(.27,.4,.69,1.01);
     border: 1px solid white;
     border-radius: 10px;
     margin-top: calc(var(--index) * 1.2);
+}
+
+.vhod{
+    animation-name: vhod;
+    animation-duration: 4.1s;
+}
+
+@keyframes vhod {
+    0%{
+        transform: translateX(0px);
+    }
+    50%{
+        transform: translateX(calc(var(--index) * -11.4));
+
+    }
+    100%{
+        transform: translateX(0px);
+
+    }
 }

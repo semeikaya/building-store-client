@@ -53,11 +53,11 @@ const chatsSlice = createSlice({
 
         }).addCase(sendMessage.fulfilled, (state, action) => {
             state.chats = state.chats.map(item => {
-                console.log(action.payload[0]._id, item._id)
+
 
                 return item._id === action.payload[0]._id ? action.payload[0] : item
             })
-            console.log(state.chats)
+
         })
     }
 })
