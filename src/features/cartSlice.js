@@ -31,10 +31,7 @@ export const cartSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(logOut, (state) => {
-        localStorage.removeItem("token");
-        state.token = localStorage.getItem("token");
-      })
+
       .addCase(createUser.pending, (state) => {
         state.error = null;
         state.loading = true;
