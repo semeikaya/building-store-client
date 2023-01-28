@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react"
 import { useDispatch, useSelector } from "react-redux";
-import { getChats, sendMessage } from "../../features/chatSlice";
+import { getChats, newChat, sendMessage } from "../../features/chatSlice";
 import styles from "./Chat.module.css"
 
 const Chat = () => {
@@ -83,10 +83,10 @@ const Chat = () => {
         }, 40)
 
         
-        
     }
 
     useEffect(() => {
+        dispatch(newChat())
         dispatch(getChats())
     }, [dispatch]);
 
