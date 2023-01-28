@@ -12,8 +12,8 @@
 }
 
 .main_of_header {
-  width: 65%;
-  height: 110px;
+  width: 70%;
+  height: calc(var(--index) * 5);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -24,16 +24,18 @@
 
 .logotype {
   width: 30%;
+  font-size: calc(var(--index) * .7);
 }
 
 .link, .active{
   text-decoration: none;
   color: white;
   cursor: pointer;
+  font-size: calc(var(--index) * .7);
 }
 
 .active {
-  height: 112px;
+  height: calc(var(--index) * 5);
   display: flex;
   align-items: center;
   border-bottom: 2px solid #ff6b00;
@@ -47,7 +49,9 @@
   align-items: center;
 }
 
-img {
-  width: 60px;
-  cursor: pointer;
+
+
+.basket{
+cursor: pointer;
+width: calc(var(--index) * 3);
 }
