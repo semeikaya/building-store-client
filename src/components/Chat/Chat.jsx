@@ -104,7 +104,7 @@ const Chat = () => {
     }
 
     return <>
-    { isOpen === "open" && localStorage.getItem("token").length > 10 ?  <div className={`${styles.chat} ${anim === "anim" ? styles.anim_close : null}`}>
+    { isOpen === "open" && chats.length > 0 ?  <div className={`${styles.chat} ${anim === "anim" ? styles.anim_close : null}`}>
         <div className={styles.header}>
             {chat.length !== 0 && chat.length !== 1 ? <button onClick={() => handleAnim()} className={styles.close} >⏝</button> : 
             <><button onClick={() => handleAnim()} className={styles.close} >⏝</button>
@@ -145,7 +145,7 @@ const Chat = () => {
     </div> : <input type="button" className={`${styles.flag} ${vhod === "true" ? styles.vhod : null}`} onClick={() => {
     open("open")
     scroll_by()
-    if(localStorage.getItem("token").length < 10){
+    if(chats.length < 1 && vhod !== "true"){
         handleVhod()}
     setChats(chats) 
     
