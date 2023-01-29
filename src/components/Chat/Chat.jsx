@@ -1,28 +1,70 @@
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { useDispatch, useSelector } from "react-redux";
-import { getChats, sendMessage } from "../../features/chatSlice";
+import { getChats, newChat, sendMessage } from "../../features/chatSlice";
 import styles from "./Chat.module.css"
 
 const Chat = () => {
+    const messages = useRef()
     const dispatch = useDispatch()
     const chats = useSelector(state => state.chatsReducer.chats)
-    console.log(chats)
 
     const [isOpen, open] = useState("close")
     const [anim, setAnim] = useState("")
     const [text, setText] = useState("")
     const [chat, setChats] = useState(chats)
+    const [vhod, setVhod] = useState("false")
+    const [scroll, setScroll] = useState("")
+    const [send, setSend] = useState([undefined, 0])
+
+    useEffect(() => {
+        setChats(chats.filter((item, index) => {
+            return item.client === send[0]
+        }))
+        setTimeout(() => {
+            setScroll("scroll")
+            setTimeout(() => {
+                setScroll("")
+            }, 10)
+        }, 10)
+
+    }, [chats]);
+
+   
+    const scroll_by = () => {
+        setTimeout(() => {
+            setScroll("scroll")
+            setTimeout(() => {
+                setScroll("")
+            }, 10)
+        }, 1000)
+    }
+
+
+
+    if(messages.current != undefined && scroll === "scroll") {
+        messages.current.scrollTo(0, 999000)
+       }
     
-
-
-    const handleSendMessage = (text, clientId, name) => { 
+   
+    const handleSendMessage = (text, clientId) => { 
         dispatch(sendMessage({text, clientId}))
         setText("")
-        setChats(chat.map(item => {
-            item.messages.push({text, sender: clientId, name})
-            return item
-        }))
+        
+        setTimeout(() => {
+            setScroll("scroll")
+            setTimeout(() => {
+                setScroll("")
+            }, 10)
+        }, 40)
+        setSend([clientId, 0])
 
+    }
+
+    const handleVhod = () => {
+        setVhod("true")
+        setTimeout(() => {
+            setVhod("false")
+        }, 4000)
     }
 
     const handleText = (e) => {
@@ -33,9 +75,18 @@ const Chat = () => {
         setChats(chats.filter(item => {
             return item._id === id ? item : null
         }))
+        setTimeout(() => {
+            setScroll("scroll")
+            setTimeout(() => {
+                setScroll("")
+            }, 10)
+        }, 40)
+
+        
     }
 
     useEffect(() => {
+        dispatch(newChat())
         dispatch(getChats())
     }, [dispatch]);
 
@@ -53,15 +104,16 @@ const Chat = () => {
     }
 
     return <>
-    { isOpen === "open" ?  <div className={`${styles.chat} ${anim === "anim" ? styles.anim_close : null}`}>
+    { isOpen === "open" && localStorage.getItem("token").length > 10 ?  <div className={`${styles.chat} ${anim === "anim" ? styles.anim_close : null}`}>
         <div className={styles.header}>
-            {chat.length !== 1 ? <button onClick={() => handleAnim()} className={styles.close} >⏝</button> : 
+            {chat.length !== 0 && chat.length !== 1 ? <button onClick={() => handleAnim()} className={styles.close} >⏝</button> : 
             <><button onClick={() => handleAnim()} className={styles.close} >⏝</button>
-            <button onClick={() => setChats(chats)} className={styles.close} >←</button>
+            {chats.length !== 1 ? <button onClick={() => setChats(chats)} className={styles.close} >←</button> : null}
             </>} 
         </div>
-        <div className={styles.messages}>
+        <div ref={messages} className={styles.messages}>
         {chat.length === 1 ? chat.map(item => {
+
             return item.messages.map(item => {
                 return <>
                 <div className={styles.mess}>
@@ -84,13 +136,22 @@ const Chat = () => {
                 return <div className={styles.messages_inputs}>
             <input type="text" value={text} onChange={handleText} className={styles.textInputMessage}/>
             <div className={styles.block_inputButton}>
-            <input type="button" onClick={() => handleSendMessage(text, item.client, item.name)} className={styles.sendInputMessage} value="➤"/>
+            <input type="button" onClick={() => text.length > 0 ? handleSendMessage(text, item.client) : null} className={styles.sendInputMessage} value="➤"/>
             </div>
             
         </div>
             })  : <div className={styles.messages_inputs}></div>}
        
-    </div> : <input type="button" className={styles.flag} onClick={() => open("open")} value="Помошь"/>}
+    </div> : <input type="button" className={`${styles.flag} ${vhod === "true" ? styles.vhod : null}`} onClick={() => {
+    open("open")
+    scroll_by()
+    if(localStorage.getItem("token").length < 10){
+        handleVhod()}
+    setChats(chats) 
+    
+    }} value="Помошь      сначала войдите в аккаунт"/>
+    
+     }
     </>
 }
 

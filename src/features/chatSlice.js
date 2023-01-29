@@ -41,6 +41,20 @@ export const sendMessage = createAsyncThunk("post/message", async (act, thunkAPI
     }
     })
 
+export const newChat = createAsyncThunk("get/newChat", async (_, thunkAPI) => {
+        try {
+            const res = await fetch("http://localhost:4040/chats/new", {
+                headers: {
+                  "Content-type": "application/json; charset=UTF-8",
+                  "authorization": `Bearer ${localStorage.getItem("token")}`
+                },
+              });
+            return res.json()
+        } catch (error) {
+            return thunkAPI.rejectWithValue(error);
+        }
+        })
+
 
 const chatsSlice = createSlice({
     name: "chats",
@@ -51,13 +65,23 @@ const chatsSlice = createSlice({
 
             state.chats = action.payload
 
+        }).addCase(getChats.rejected, (state, action) => {
+
+            state.chats = []
+
         }).addCase(sendMessage.fulfilled, (state, action) => {
             state.chats = state.chats.map(item => {
-                console.log(action.payload[0]._id, item._id)
+
 
                 return item._id === action.payload[0]._id ? action.payload[0] : item
             })
-            console.log(state.chats)
+
+        }).addCase(newChat.fulfilled, (state, action) => {
+            if(action.payload !== String){
+                state.chats = [action.payload]
+
+            }
+            
         })
     }
 })
