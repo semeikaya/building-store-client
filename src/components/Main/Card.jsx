@@ -1,9 +1,11 @@
 import { useState } from "react";
+import { useSelector } from "react-redux";
 import styles from "./Main.module.css";
 
 const Card = (props) => {
   const products = props.products;
   const [btnStatus, setBtnStatus] = useState(false);
+  const token = useSelector((state) => state.cartReducer.token);
 
   function getProducts() {
     const cartLocalStorage = localStorage.getItem("cartProduct");
@@ -14,20 +16,22 @@ const Card = (props) => {
   }
 
   function addProduct(item, count) {
-    const cartProducts = getProducts();
-    let products = cartProducts;
-    products.push(item);
-    const listLength = products.length - 1;
-    const result = products.map((item, i) => {
-      if (i === listLength) {
-        const cost = { ...item, count: count };
-        return cost;
-      }
-      return item;
-    });
-
-    localStorage.setItem("cartProduct", JSON.stringify(result));
-    setBtnStatus(!btnStatus);
+    if (!token) {
+      const cartProducts = getProducts();
+      let products = cartProducts;
+      products.push(item);
+      const listLength = products.length - 1;
+      const result = products.map((item, i) => {
+        if (i === listLength) {
+          const cost = { ...item, count: count };
+          return cost;
+        }
+        return item;
+      });
+      localStorage.setItem("cartProduct", JSON.stringify(result));
+      setBtnStatus(!btnStatus);
+    }
+    
   }
 
   return (
