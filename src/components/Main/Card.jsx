@@ -1,24 +1,24 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import styles from "./Main.module.css";
 
 const Card = (props) => {
   const products = props.products;
-  const [btnStatus, setBtnStatus] = useState(false);
   const token = useSelector((state) => state.cartReducer.token);
+  const [localProducts, setLocalProducts] = useState([]);
 
-  function getProducts() {
-    const cartLocalStorage = localStorage.getItem("cartProduct");
-    if (cartLocalStorage !== null) {
-      return JSON.parse(cartLocalStorage);
+  useEffect(() => {
+    const localProduct = localStorage.getItem("cartProduct") || [];
+    console.log(localProduct);
+    if (localProduct.length === 0) {
+      localStorage.setItem("cartProduct", JSON.stringify(localProduct));
     }
-    return [];
-  }
+    setLocalProducts(JSON.parse(localProduct));
+  }, []);
 
   function addProduct(item, count) {
     if (!token) {
-      const cartProducts = getProducts();
-      let products = cartProducts;
+      let products = JSON.parse(localStorage.getItem("cartProduct"));
       products.push(item);
       const listLength = products.length - 1;
       const result = products.map((item, i) => {
@@ -28,22 +28,24 @@ const Card = (props) => {
         }
         return item;
       });
-      localStorage.setItem("cartProduct", JSON.stringify(result));
-      setBtnStatus(!btnStatus);
+      setLocalProducts(result);
+      localStorage.setItem("cartProduct", JSON.stringify(localProducts));
     }
-    
   }
 
   return (
     <>
       {products.length > 0
         ? products.map((item) => {
-            const localProd = JSON.parse(localStorage.getItem("cartProduct"));
+            const productLocal = JSON.parse(
+              localStorage.getItem("cartProduct")
+            );
+
             const buttonStat = () => {
-              if (localProd === null) {
+              if (localProducts === null) {
                 return null;
               } else {
-                const res = localProd.filter((product) => {
+                const res = localProducts.filter((product) => {
                   return product._id === item._id;
                 });
                 return res.length;
