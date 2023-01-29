@@ -1,25 +1,31 @@
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { addCart, getCart } from "../../features/cartSlice";
 import styles from "./Main.module.css";
 
 const Card = (props) => {
   const products = props.products;
   const token = useSelector((state) => state.cartReducer.token);
   const [localProducts, setLocalProducts] = useState([]);
-
+  const cartUserProducts = useSelector((state) => state.cartReducer);
+  const dispatch = useDispatch();
   useEffect(() => {
-    const localProduct = localStorage.getItem("cartProduct") || [];
-    console.log(localProduct);
-    if (localProduct.length === 0) {
-      localStorage.setItem("cartProduct", JSON.stringify(localProduct));
+    const localProduct = localStorage.getItem("cartProduct") || "[]";
+    if (localProduct === "[]") {
+      const product = [];
+      localStorage.setItem("cartProduct", JSON.stringify(product));
     }
     setLocalProducts(JSON.parse(localProduct));
   }, []);
 
-  function addProduct(item, count) {
+  useEffect(() => {
+    dispatch(getCart());
+  }, [dispatch]);
+
+  function addProduct(productId, count) {
     if (!token) {
       let products = JSON.parse(localStorage.getItem("cartProduct"));
-      products.push(item);
+      products.push(productId);
       const listLength = products.length - 1;
       const result = products.map((item, i) => {
         if (i === listLength) {
@@ -29,7 +35,22 @@ const Card = (props) => {
         return item;
       });
       setLocalProducts(result);
-      localStorage.setItem("cartProduct", JSON.stringify(localProducts));
+      localStorage.setItem("cartProduct", JSON.stringify(result));
+    } else {
+      dispatch(addCart({ productId, count }));
+    }
+  }
+
+  function removeProduct(productId) {
+    if (!token) {
+      let products = JSON.parse(localStorage.getItem("cartProduct"));
+      const result = products.filter((item, i) => {
+        return item._id !== productId._id;
+      });
+      setLocalProducts(result);
+      localStorage.setItem("cartProduct", JSON.stringify(result));
+    } else {
+      dispatch(addCart({ productId }));
     }
   }
 
@@ -37,10 +58,6 @@ const Card = (props) => {
     <>
       {products.length > 0
         ? products.map((item) => {
-            const productLocal = JSON.parse(
-              localStorage.getItem("cartProduct")
-            );
-
             const buttonStat = () => {
               if (localProducts === null) {
                 return null;
@@ -51,11 +68,10 @@ const Card = (props) => {
                 return res.length;
               }
             };
-
-            const disabed = buttonStat();
+            const disabled = buttonStat();
 
             return (
-              <div className={styles.block_of_searched}>
+              <div key={item._id} className={styles.block_of_searched}>
                 <div className={styles.up_block}>
                   <div className={styles.picture_block}>
                     <img
@@ -73,7 +89,7 @@ const Card = (props) => {
                         <div className={styles.tochki}>
                           <p className={styles.gray_text}>Поставщик:</p>
                           <div className={styles.line}></div>
-                          <p>{item.supplier} </p>
+                          <p>{item.supplier}</p>
                         </div>
                         <div className={styles.tochki}>
                           <p className={styles.gray_text}>Цена: </p>
@@ -98,20 +114,33 @@ const Card = (props) => {
                     </div>
                   </div>
                 </div>
-                <div></div>
-                <div className={styles.in_down}>
-                  <div className={styles.inputs_of_card}>
-                    <input
-                      type="button"
-                      onClick={() => {
-                        addProduct(item, props.count);
-                      }}
-                      value="ДОБАВИТЬ К ЗАКАЗУ"
-                      disabled={disabed}
-                    />
-                    <input type="button" value="ЗАКАЗАТЬ" />
+                {disabled === 1 ? (
+                  <div className={styles.in_down}>
+                    <div className={styles.remove_product}>
+                      <input
+                        type="button"
+                        onClick={() => {
+                          removeProduct(item);
+                        }}
+                        value="УДАЛИТЬ ЗАКАЗ"
+                      />
+                      <input type="button" value="ЗАКАЗАТЬ" />
+                    </div>
                   </div>
-                </div>
+                ) : (
+                  <div className={styles.in_down}>
+                    <div className={styles.inputs_of_card}>
+                      <input
+                        type="button"
+                        onClick={() => {
+                          addProduct(item, props.count);
+                        }}
+                        value="ДОБАВИТЬ К ЗАКАЗУ"
+                      />
+                      <input type="button" value="ЗАКАЗАТЬ" />
+                    </div>
+                  </div>
+                )}
               </div>
             );
           })
