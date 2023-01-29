@@ -4,6 +4,7 @@ import { autocompleteProducts, getProducts } from "../../features/productsSlice"
 import Card from "./Card"
 import styles from "./Main.module.css"
 
+
 const Main = () => {
 
     const dispatch = useDispatch()
@@ -40,7 +41,7 @@ const Main = () => {
       }
       let time = setTimeout(() => {
         setError("")
-      }, 3000)
+      }, 2000)
       
     }
 
@@ -97,7 +98,7 @@ const Main = () => {
                     </div>
                     <div className={styles.button_block}>
                         
-                        <input type="button" value="РАССЧИТАТЬ" onClick={() => address.length > 0 && metres3.length > 0 && selectedMaterial === "true" ? setBol("true") : handleError()} className={styles.calc_input} placeholder="Выберите материал"/>
+                        <input type="button" value="РАССЧИТАТЬ" onClick={() => address.length > 0 && metres3.length > 0 && selectedMaterial === "true" ? setBol("true") : error === "" ? handleError() : null} className={styles.calc_input} placeholder="Выберите материал"/>
                     </div>
                 </div>
 
@@ -121,7 +122,7 @@ const Main = () => {
 
 
             </button>
-            
+
     </>
 }
 
