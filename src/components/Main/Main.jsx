@@ -49,7 +49,6 @@ const Main = () => {
         dispatch(autocompleteProducts(value));
       }, [dispatch, value]);
 
-
       const findArr = (e) => {
           if(e.target.value != ""){
             showCards("show")
@@ -76,7 +75,7 @@ const Main = () => {
                 <div className={styles.calc_center}>
                 <div className={styles.main_info}>
                     <p>Быстрый расчет стоимости 
-                    стройматериалов и доставки по всей России <p className={styles.orange_text}>с использованием искусственного интеллекта</p></p>
+                    стройматериалов и доставки по всей России <span className={styles.orange_text}>с использованием искусственного интеллекта</span></p>
                 </div>
                 <div className={styles.calc_info}>
                     <div className={styles.material_block}>

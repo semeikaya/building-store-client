@@ -35,6 +35,9 @@ const Feedback = () => {
     setEmail("");
     setText("");
     setSent(true);
+    setTimeout(() => {
+      setSent(false)
+    }, 1000)
   };
 
   const handleClick = (e) => {
@@ -51,20 +54,19 @@ const Feedback = () => {
     } else if (text.length === 0) {
       setError("text");
     }
+setTimeout(() => {
+  setError("")
+}, 1500)
+    
   };
 
   return (
     <>
-      {sent ? (
-        <div className={styles.send}>
-          <div className={styles.sendText}>Ваше сообщение принято.</div>
-          <div>
-            <img className={styles.sendImage} src={setIMG} alt="" />
-          </div>
-        </div>
-      ) : (
+       (
         <div className={styles.feedback_body}>
           <div className={styles.text}>Напишите нам</div>
+          <div className={styles.middle}>
+          <div className={styles.leftMiddle}>
           <div className={styles.body_input_name}>
             <div>Имя</div>
             <input
@@ -91,6 +93,20 @@ const Feedback = () => {
               id=""
             />
           </div>
+          </div>
+          <div className={styles.body_input_text}>
+            <div className={styles.sms}>Сообщение</div>
+            <input
+              onChange={handleValueText}
+              value={text}
+              className={`${styles.input_text} ${
+                error === "text" ? styles.error : null
+              } `}
+              placeholder="Текст сообщения"
+              type="text"
+            />
+          </div></div>
+          <div className={styles.down}>
           <div className={styles.body_input_email}>
             <div>Email</div>
             <input
@@ -103,20 +119,7 @@ const Feedback = () => {
               type="text"
             />
           </div>
-          <div className={styles.body_input_text}>
-            <div className={styles.sms}>Сообщение</div>
-            <textarea
-              onChange={handleValueText}
-              value={text}
-              className={`${styles.input_text} ${
-                error === "text" ? styles.error : null
-              } `}
-              placeholder="Текст сообщения"
-              type="text"
-              name=""
-              id=""
-            />
-          </div>
+          
           <div className={styles.addButton}>
             <button
               onClick={() =>
@@ -127,7 +130,7 @@ const Feedback = () => {
                 email.split("@").length === 2 &&
                 email.split("@")[1] === "gmail.com"
                   ? handleOnclick()
-                  : handleClick()
+                  : error === "" ? handleClick() : null
               }
               className={styles.button}
             >
@@ -135,7 +138,19 @@ const Feedback = () => {
             </button>
           </div>
         </div>
-      )}
+          </div>
+          
+      ){sent ? (
+        <div className={styles.send_block}>
+        <div className={styles.send}>
+        <div>
+            <img className={styles.sendImage} src={setIMG} alt="" />
+          </div>
+          <div className={styles.sendText}>Ваше сообщение принято.</div>
+          
+        </div>
+        </div>
+      ) : null}
     </>
   );
 };
