@@ -3,15 +3,9 @@ import styles from "./Cart.module.css";
 
 const Cart = () => {
   const cartProducts = JSON.parse(localStorage.getItem("cartProduct"));
-  const Products = cartProducts.map((item)=> {
-    
-  })
-
-console.log(cartProducts);
-
-if(cartProducts === null){
-  return <div>Корзина пуста</div>
-}
+  if (cartProducts === null) {
+    return <div>Корзина пуста</div>;
+  }
 
   return (
     <div className={styles.catr_main_box}>
@@ -28,11 +22,14 @@ if(cartProducts === null){
               <div className={styles.product_box}>
                 <div className={styles.name_and_pic_box}>
                   <div className={styles.product_image_box}>
-                    <img className={styles.product_image} src={item.productPicture} alt="" />
+                    <img
+                      className={styles.product_image}
+                      src={item.productPicture}
+                      alt=""
+                    />
                   </div>
                   <div className={styles.product_name}>{item.productName}</div>
                 </div>
-
                 <div>{item.price}</div>
                 <div></div>
               </div>

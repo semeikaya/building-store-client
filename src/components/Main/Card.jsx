@@ -1,7 +1,11 @@
+import { useState } from "react";
+import { useSelector } from "react-redux";
 import styles from "./Main.module.css";
 
 const Card = (props) => {
   const products = props.products;
+  const [btnStatus, setBtnStatus] = useState(false);
+  const token = useSelector((state) => state.cartReducer.token);
 
   function getProducts() {
     const cartLocalStorage = localStorage.getItem("cartProduct");
@@ -11,27 +15,43 @@ const Card = (props) => {
     return [];
   }
 
-  const cartProducts = getProducts();
-
   function addProduct(item, count) {
-    let products = cartProducts;
-    console.log(products);
-    products.push(item);
-    const listLength = products.length - 1;
-    const result = products.map((item, i) => {
-      if (i === listLength) {
-        const cost = { ...item, count: count };
-        return cost;
-      }
-      return item;
-    });
-    localStorage.setItem("cartProduct", JSON.stringify(result));
+    if (!token) {
+      const cartProducts = getProducts();
+      let products = cartProducts;
+      products.push(item);
+      const listLength = products.length - 1;
+      const result = products.map((item, i) => {
+        if (i === listLength) {
+          const cost = { ...item, count: count };
+          return cost;
+        }
+        return item;
+      });
+      localStorage.setItem("cartProduct", JSON.stringify(result));
+      setBtnStatus(!btnStatus);
+    }
+    
   }
 
   return (
     <>
       {products.length > 0
         ? products.map((item) => {
+            const localProd = JSON.parse(localStorage.getItem("cartProduct"));
+            const buttonStat = () => {
+              if (localProd === null) {
+                return null;
+              } else {
+                const res = localProd.filter((product) => {
+                  return product._id === item._id;
+                });
+                return res.length;
+              }
+            };
+
+            const disabed = buttonStat();
+
             return (
               <div className={styles.block_of_searched}>
                 <div className={styles.up_block}>
@@ -85,6 +105,7 @@ const Card = (props) => {
                         addProduct(item, props.count);
                       }}
                       value="ДОБАВИТЬ К ЗАКАЗУ"
+                      disabled={disabed}
                     />
                     <input type="button" value="ЗАКАЗАТЬ" />
                   </div>
