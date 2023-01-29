@@ -72,6 +72,6 @@
   height: 100%;
 }
 .product_image_box {
-  width: 38%;
-  min-height: 100%;
+  width: 35%;
+  height: 50px;
 }

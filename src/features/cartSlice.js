@@ -1,7 +1,7 @@
-import { createAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  token: localStorage.getItem("products"),
+  token: localStorage.getItem("token"),
 };
 
 export const addCart = createAsyncThunk(
@@ -14,38 +14,35 @@ export const addCart = createAsyncThunk(
         body: JSON.stringify({ productId }),
       });
       const products = await res.json();
-      if (json.error) {
-        return thunkAPI.rejectWithValue(json.error);
+      if (products.error) {
+        return thunkAPI.rejectWithValue(products.error);
       }
-      localStorage.setItem("products", json);
-      return json;
+      localStorage.setItem("token", products);
+      return products;
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
     }
   }
 );
 
-export const cartSlice = createSlice({
+export const cartReducer = createSlice({
   name: "cart",
   initialState,
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(logOut, (state) => {
-        localStorage.removeItem("token");
-        state.token = localStorage.getItem("token");
-      })
-      .addCase(createUser.pending, (state) => {
+
+      .addCase(addCart.pending, (state) => {
         state.error = null;
         state.loading = true;
         state.signUp = true;
       })
-      .addCase(createUser.fulfilled, (state, action) => {
+      .addCase(addCart.fulfilled, (state, action) => {
         state.error = null;
         state.signUp = false;
         state.token = action.payload;
       })
-      .addCase(createUser.rejected, (state, action) => {
+      .addCase(addCart.rejected, (state, action) => {
         state.signUp = false;
         state.loading = false;
         state.error = action.payload;
@@ -53,4 +50,4 @@ export const cartSlice = createSlice({
   },
 });
 
-export default cartSlice.reducer;
+export default cartReducer.reducer;
