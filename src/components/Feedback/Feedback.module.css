@@ -1,142 +1,239 @@
+:root{
+  --index: calc(1vw + 1vh)
+}
+
+
+input{
+  box-sizing: border-box;
+}
 .feedback_body {
-  position: absolute;
-  width: 650px;
-  height: 504px;
-  left: 590px;
-  top: 300px;
-  background: #fafafa;
-  border-radius: 10px;
+ width: 60%;
+ display: flex;
+ flex-direction: column;
+align-items: center;
+background-color: #FAFAFA;
+height: calc(var(--index) * 19.2);
+margin-top: calc(var(--index) * 8);
+border-radius: 10px;
+
+}
+
+.middle{
+  display: flex;
+  height: calc(var(--index) * 8.2);
+  margin-top: calc(var(--index) * 1.2);
+  width: 90%;
+  justify-content: space-between;
+}
+
+.down{
+  margin-top: calc(var(--index) * 1.2);
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.leftMiddle{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 48%;
+  height: 100%;
 }
 .text {
-  margin-top: 20px;
-  font-family: "Gotham Pro";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 24px;
-  line-height: 23px;
-  color: #000000;
-  margin-left: 17px;
+ width: 90%;
+ margin-top: calc(var(--index) * 1.2);
+ font-size: calc(var(--index) * 1.2);
+ font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
 }
 .body_input_name {
-  width: 250px;
-  height: 100px;
-  margin-top: 20px;
-  margin-left: 20px;
+
 }
 .body_input_phone {
-  width: 250px;
-  height: 100px;
-  margin-top: 20px;
-  margin-left: 20px;
+  
 }
 .body_input_email {
-  width: 250px;
-  height: 100px;
-  margin-top: 20px;
-  margin-left: 20px;
+width: 48%;
 }
 .body_input_text {
-  position: relative;
-  width: 250px;
-  height: 200px;
-  margin-top: 20px;
-  margin-left: 350px;
-  margin-right: 30px;
-  bottom: 360px;
+ display: flex;
+ flex-direction: column;
+ justify-content: center;
+ height: calc(var(--index) * 8.2);
+ width: 48%;
 }
 .input_name {
-  background: #ffffff;
-  border: 1px solid #e8e8e8;
-  border-radius: 5px;
-  width: 250px;
-  -webkit-box-shadow: 7px 4px 8px 0px rgba(74, 38, 15, 0.2);
-  -moz-box-shadow: 7px 4px 8px 0px rgba(74, 38, 15, 0.2);
-  box-shadow: 7px 4px 8px 0px rgba(74, 38, 15, 0.2);
+padding: 0;
+margin: 0;
+margin-top: calc(var(--index) * .6);
+border: 1px solid #E8E8E8;
+border-radius: 5px;
+padding-left: calc(var(--index) * 1.2);
+font-size: calc(var(--index) * .6);
 }
 
 .input_phone {
-  background: #ffffff;
-  border: 1px solid #e8e8e8;
-  border-radius: 5px;
-  width: 250px;
-  -webkit-box-shadow: 7px 4px 8px 0px rgba(74, 38, 15, 0.2);
-  -moz-box-shadow: 7px 4px 8px 0px rgba(74, 38, 15, 0.2);
-  box-shadow: 7px 4px 8px 0px rgba(74, 38, 15, 0.2);
+  padding: 0;
+  margin: 0;
+margin-top: calc(var(--index) * .6);
+border: 1px solid #E8E8E8;
+border-radius: 5px;
+padding-left: calc(var(--index) * 1.2);
+font-size: calc(var(--index) * .6);
 }
 
 .input_email {
-  background: #ffffff;
-  border: 1px solid #e8e8e8;
-  border-radius: 5px;
-  width: 250px;
-  -webkit-box-shadow: 7px 4px 8px 0px rgba(74, 38, 15, 0.2);
-  -moz-box-shadow: 7px 4px 8px 0px rgba(74, 38, 15, 0.2);
-  box-shadow: 7px 4px 8px 0px rgba(74, 38, 15, 0.2);
+  padding: 0;
+  margin: 0;
+border-radius: 5px;
+border: 1px solid #E8E8E8;
+padding-left: calc(var(--index) * 1);
+font-size: calc(var(--index) * .6);
 }
 
 .input_text {
-  padding-left: 10px;
-  padding-top: 10px;
-  background: #ffffff;
-  border: 1px solid #e8e8e8;
-  border-radius: 5px;
-  width: 250px;
-  height: 150px;
-  resize: none;
-  outline: none;
-  text-align: start;
-  -webkit-box-shadow: 7px 4px 8px 0px rgba(74, 38, 15, 0.2);
-  -moz-box-shadow: 7px 4px 8px 0px rgba(74, 38, 15, 0.2);
-  box-shadow: 7px 4px 8px 0px rgba(74, 38, 15, 0.2);
+  padding: 0;
+  margin: 0;
+  height: 90%;
+  width: 100%;
+margin-top: calc(var(--index) * .6);
+border: none;
+border-radius: 5px;
+border: 1px solid #E8E8E8;
+padding-left: calc(var(--index) * 1.2);
+padding-bottom: calc(var(--index) * 4.2);
+font-size: calc(var(--index) * .6);
 }
 
 .addButton {
-  width: 100px;
-  height: 50px;
+width: 48%;
 }
 .button {
-  position: absolute;
-  width: 240px;
-  height: 66px;
-  bottom: 130px;
-  margin-left: 360px;
-  top: 320px;
-  border: none;
-  cursor: pointer;
-
-  background: #ff6b00;
-  border-radius: 5px;
+width: 100%;
+height: calc(var(--index) * 2.49);
+border: none;
+border-radius: 5px;
+box-sizing: border-box;
+background-color: #FF6B00;
+color: white;
+font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 .sms {
-  margin-bottom: 7px;
+  height: 10%;
 }
 .send {
+
+
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: space-between;
+height: calc(var(--index) * 10);
+
+}
+
+.send_block{
   position: absolute;
-  width: 200px;
-  height: 200px;
-  bottom: 200px;
-  right: 300px;
-  top: 300px;
+  left: 0;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  background-color: white;
+  z-index: 400;
+  animation-name: send;
+  animation-duration: 1.6s;
 }
 .sendText {
-  font-family: "Gotham Pro";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 26px;
-  line-height: 147.69%;
-
-  text-align: center;
-
-  color: #000000;
-
-  width: 300px;
+font-size: calc(var(--index) * 1.2);
+font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 .sendImage {
-  margin-left: 60px;
-  margin-top: 20px;
-  width: 150px;
-  height: 130px;
+
 }
 .error {
-  box-shadow: 0px 0px 6px red;
+
+  animation-name: error;
+  animation-duration: 1s;
+  transition: linear;
 }
+
+@keyframes error{
+  0%{
+    
+    transform: translateY(2px);
+    border: 1px solid rgba(255, 0, 0, 0.539);
+
+  }
+  10%{
+    
+    transform: translateY(-2px);
+
+
+  }
+  15%{
+    
+    transform: translateY(2px);
+
+  }
+  20%{
+    
+    transform: translateY(-2px);
+
+  }25%{
+    
+    transform: translateY(2px);
+
+  }
+  30%{
+    
+    transform: translateY(-2px);
+
+  }35%{
+    
+    transform: translateY(2px);
+
+  }
+  40%{
+    
+    transform: translateY(-2px);
+
+  }
+  45%{
+    
+    transform: translateY(2px);
+
+  }
+  50%{
+    
+    transform: translateY(-2px);
+
+  }
+  55%{
+    transform: translateX(0px);
+    transform: translateY(0px);
+
+  }
+  
+}
+
+
+@keyframes send {
+  0%{
+    opacity: 0%;
+  }
+  20%{
+    opacity: 100%;
+  }
+  80% {
+    opacity: 100%;
+  }
+  100%{
+    opacity: 0%;
+  }
+}
+
