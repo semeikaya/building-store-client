@@ -60,7 +60,7 @@ export const newChat = createAsyncThunk("get/newChat", async (_, thunkAPI) => {
         
 export const getNewMessage = createAsyncThunk("get/newNewMessage", async (_, thunkAPI) => {
         try {
-            const res = await fetch("http://localhost:4040/chats/getMessage", {
+            const res = await fetch("http://localhost:4040/message/getMessage", {
                 headers: {
                   "Content-type": "application/json; charset=UTF-8",
                   "authorization": `Bearer ${localStorage.getItem("token")}`
@@ -102,6 +102,7 @@ const chatsSlice = createSlice({
         }).addCase(getNewMessage.fulfilled, (state, action) => {
             console.log(action.payload)
             state.chats = action.payload
+            state.newMessage = true
         }).addCase(getNewMessage.pending, (state, action) => {
             state.newMessage = false
         })
