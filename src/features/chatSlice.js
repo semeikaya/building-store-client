@@ -29,7 +29,8 @@ export const sendMessage = createAsyncThunk("post/message", async (act, thunkAPI
             method: "POST",
             body: JSON.stringify({
                 text: act.text,
-                clientId: act.clientId
+                clientId: act.clientId,
+                date: act.date
             }),
             headers: {
               "Content-type": "application/json; charset=UTF-8",

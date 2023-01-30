@@ -146,7 +146,7 @@ height: calc(var(--index) * 10);
   background-color: white;
   z-index: 400;
   animation-name: send;
-  animation-duration: 1.6s;
+  animation-duration: 2s;
 }
 .sendText {
 font-size: calc(var(--index) * 1.2);
