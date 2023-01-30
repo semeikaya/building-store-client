@@ -169,12 +169,12 @@ const Chat = () => {
                       <>
                         <div className={chats.length > 1 ? item1.admin === item.sender ? styles.your_mess : styles.mess : item1.client === item.sender ? styles.your_mess : styles.mess}>
                           <div className={ chats.length > 1 ? item1.admin === item.sender ? styles.you : styles.name_block : item1.client === item.sender ? styles.you : styles.name_block}>
-                            <p>{chats.length > 1 ? item1.admin === item.sender ? "Вы" : item.name : item1.client === item.sender ? "" :item.name}</p>
+                            <p>{chats.length > 1 ? item1.admin === item.sender ? "Вы" : item.name : item1.client === item.sender ? "Вы" :item.name}</p>
                           </div>
                           <div className={chats.length > 1 ? item1.admin === item.sender ? styles.your_text_block : styles.text_block : item1.client === item.sender ? styles.your_text_block : styles.text_block}>
                             <p className={styles.message}>{item.text}</p>
                             <div className={chats.length > 1 ? item1.admin === item.sender ?  styles.your_date : styles.date : item1.client === item.sender ? styles.your_date : styles.date}>
-                            <p>{`${date.getHours() - date.getUTCHours() + item.date.hours}:${date.getMinutes() - date.getUTCMinutes() + item.date.minutes}`}</p>
+                            <p>{`${(date.getHours() - date.getUTCHours() + item.date.hours) > 9 ? date.getHours() - date.getUTCHours() + item.date.hours : "0" + (date.getHours() - date.getUTCHours() + item.date.hours)}:${(date.getMinutes() - date.getUTCMinutes() + item.date.minutes) > 9 ? date.getMinutes() - date.getUTCMinutes() + item.date.minutes : "0" + (date.getMinutes() - date.getUTCMinutes() + item.date.minutes)}`}</p>
                             </div>
                           </div>
                           
