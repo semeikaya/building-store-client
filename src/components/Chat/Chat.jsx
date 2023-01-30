@@ -21,7 +21,11 @@ const Chat = () => {
   const [vhod, setVhod] = useState("false");
   const [scroll, setScroll] = useState("");
   const [send, setSend] = useState([undefined, 0]);
+  let date = new Date();
 
+  
+
+  
   console.log(newMessages);
 
   useEffect(() => {
@@ -44,6 +48,7 @@ const Chat = () => {
   }, [chats]);
 
   if (newMessages === true) {
+
     dispatch(getChats());
     dispatch(getNewMessage());
     if (send[0] != undefined) {
@@ -69,7 +74,7 @@ const Chat = () => {
   }
 
   const handleSendMessage = (text, clientId) => {
-    dispatch(sendMessage({ text, clientId }));
+    dispatch(sendMessage({ text, clientId,  date: {hours: date.getUTCHours(), minutes: date.getUTCMinutes()}}));
     setText("");
 
     setTimeout(() => {
@@ -89,6 +94,7 @@ const Chat = () => {
   };
 
   const handleText = (e) => {
+    console.log(e)
     setText(e.target.value);
   };
 
@@ -157,31 +163,36 @@ const Chat = () => {
           </div>
           <div ref={messages} className={styles.messages}>
             {chat.length === 1
-              ? chat.map((item) => {
-                  return item.messages.map((item) => {
+              ? chat.map((item1) => {
+                  return item1.messages.map((item) => {
                     return (
                       <>
-                        <div className={styles.mess}>
-                          <div className={styles.name_block}>
-                            <p>{item.name}</p>
+                        <div className={chats.length > 1 ? item1.admin === item.sender ? styles.your_mess : styles.mess : item1.client === item.sender ? styles.your_mess : styles.mess}>
+                          <div className={ chats.length > 1 ? item1.admin === item.sender ? styles.you : styles.name_block : item1.client === item.sender ? styles.you : styles.name_block}>
+                            <p>{chats.length > 1 ? item1.admin === item.sender ? "Вы" : item.name : item1.client === item.sender ? "" :item.name}</p>
                           </div>
-                          <div className={styles.text_block}>
+                          <div className={chats.length > 1 ? item1.admin === item.sender ? styles.your_text_block : styles.text_block : item1.client === item.sender ? styles.your_text_block : styles.text_block}>
                             <p className={styles.message}>{item.text}</p>
+                            <div className={chats.length > 1 ? item1.admin === item.sender ?  styles.your_date : styles.date : item1.client === item.sender ? styles.your_date : styles.date}>
+                            <p>{`${date.getHours() - date.getUTCHours() + item.date.hours}:${date.getMinutes() - date.getUTCMinutes() + item.date.minutes}`}</p>
+                            </div>
                           </div>
+                          
                         </div>
                       </>
                     );
                   });
                 })
               : chats.map((item, index) => {
-                  return (
+                
+                  return item.messages.length > 0 ? (
                     <input
                       type="button"
                       className={styles.chat_blocks}
                       onClick={() => filterChats(item._id, item.client)}
-                      value={index}
+                      value={item.messages[0].name}
                     />
-                  );
+                  ): null;
                 })}
           </div>
 
@@ -192,6 +203,11 @@ const Chat = () => {
                   <input
                     type="text"
                     value={text}
+                    onKeyDown={(e) => {
+                        if(e.key === "Enter"){
+                            handleSendMessage(text, item.client)
+                        }
+                    }}
                     onChange={handleText}
                     className={styles.textInputMessage}
                   />

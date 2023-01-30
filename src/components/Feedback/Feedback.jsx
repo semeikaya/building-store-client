@@ -37,7 +37,7 @@ const Feedback = () => {
     setSent(true);
     setTimeout(() => {
       setSent(false)
-    }, 1000)
+    }, 1900)
   };
 
   const handleClick = (e) => {
