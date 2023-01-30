@@ -62,7 +62,7 @@ setTimeout(() => {
 
   return (
     <>
-       (
+       
         <div className={styles.feedback_body}>
           <div className={styles.text}>Напишите нам</div>
           <div className={styles.middle}>
@@ -140,7 +140,7 @@ setTimeout(() => {
         </div>
           </div>
           
-      ){sent ? (
+      {sent ? (
         <div className={styles.send_block}>
         <div className={styles.send}>
         <div>

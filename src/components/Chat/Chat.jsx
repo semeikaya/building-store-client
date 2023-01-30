@@ -16,10 +16,14 @@ const Chat = () => {
     const [scroll, setScroll] = useState("")
     const [send, setSend] = useState([undefined, 0])
 
+
     useEffect(() => {
-        setChats(chats.filter((item, index) => {
+        if(send[0] != undefined){
+            setChats(chats.filter(item => {
             return item.client === send[0]
-        }))
+        }))}
+
+
         setTimeout(() => {
             setScroll("scroll")
             setTimeout(() => {
@@ -43,6 +47,7 @@ const Chat = () => {
 
     if(messages.current != undefined && scroll === "scroll") {
         messages.current.scrollTo(0, 999000)
+        
        }
     
    
@@ -106,9 +111,12 @@ const Chat = () => {
     return <>
     { isOpen === "open" && chats.length > 0 ?  <div className={`${styles.chat} ${anim === "anim" ? styles.anim_close : null}`}>
         <div className={styles.header}>
-            {chat.length !== 0 && chat.length !== 1 ? <button onClick={() => handleAnim()} className={styles.close} >⏝</button> : 
-            <><button onClick={() => handleAnim()} className={styles.close} >⏝</button>
+            {chat.length !== 0 && chat.length !== 1 ? <button onClick={() => handleAnim()} className={styles.close} >⌵</button> : 
+            <><button onClick={() => handleAnim()} className={styles.close} >⌵</button>
             {chats.length !== 1 ? <button onClick={() => setChats(chats)} className={styles.close} >←</button> : null}
+            {chat.length === 1 ? <button onClick={() => dispatch(getChats())} className={styles.close} >☉</button> : null}
+
+            
             </>} 
         </div>
         <div ref={messages} className={styles.messages}>
