@@ -1,12 +1,14 @@
 import { useEffect, useRef, useState } from "react"
 import { useDispatch, useSelector } from "react-redux";
-import { getChats, newChat, sendMessage } from "../../features/chatSlice";
+import { getChats, getNewMessage, newChat, sendMessage } from "../../features/chatSlice";
 import styles from "./Chat.module.css"
+
 
 const Chat = () => {
     const messages = useRef()
     const dispatch = useDispatch()
     const chats = useSelector(state => state.chatsReducer.chats)
+    const newMessages = (state => state.chatsReducer.newMessage)
 
     const [isOpen, open] = useState("close")
     const [anim, setAnim] = useState("")
@@ -16,6 +18,12 @@ const Chat = () => {
     const [scroll, setScroll] = useState("")
     const [send, setSend] = useState([undefined, 0])
 
+
+    if(newMessages === true ){
+        dispatch(getChats())
+        dispatch(getNewMessage())
+        console.log("man")
+    }
 
     useEffect(() => {
         if(send[0] != undefined){
@@ -90,9 +98,12 @@ const Chat = () => {
         
     }
 
+
+
     useEffect(() => {
         dispatch(newChat())
         dispatch(getChats())
+        dispatch(getNewMessage())
     }, [dispatch]);
 
     const handleAnim = () => {
@@ -114,7 +125,7 @@ const Chat = () => {
             {chat.length !== 0 && chat.length !== 1 ? <button onClick={() => handleAnim()} className={styles.close} >⌵</button> : 
             <><button onClick={() => handleAnim()} className={styles.close} >⌵</button>
             {chats.length !== 1 ? <button onClick={() => setChats(chats)} className={styles.close} >←</button> : null}
-            {chat.length === 1 ? <button onClick={() => dispatch(getChats())} className={styles.close} >☉</button> : null}
+
 
             
             </>} 
