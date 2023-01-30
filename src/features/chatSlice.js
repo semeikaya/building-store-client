@@ -3,7 +3,8 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 const initialState = {
     chats: [
 
-    ]
+    ],
+    newMessage: false
 }
 
 
@@ -56,6 +57,22 @@ export const newChat = createAsyncThunk("get/newChat", async (_, thunkAPI) => {
         })
 
 
+        
+export const getNewMessage = createAsyncThunk("get/newNewMessage", async (_, thunkAPI) => {
+        try {
+            const res = await fetch("http://localhost:4040/chats/getMessage", {
+                headers: {
+                  "Content-type": "application/json; charset=UTF-8",
+                  "authorization": `Bearer ${localStorage.getItem("token")}`
+                },
+              });
+            return res.json()
+        } catch (error) {
+            return thunkAPI.rejectWithValue(error);
+        }
+        })
+
+
 const chatsSlice = createSlice({
     name: "chats",
     initialState,
@@ -82,6 +99,11 @@ const chatsSlice = createSlice({
 
             }
             
+        }).addCase(getNewMessage.fulfilled, (state, action) => {
+            console.log(action.payload)
+            state.chats = action.payload
+        }).addCase(getNewMessage.pending, (state, action) => {
+            state.newMessage = false
         })
     }
 })
