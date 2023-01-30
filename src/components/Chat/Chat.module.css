@@ -36,7 +36,7 @@ transition: cubic-bezier(.27,.4,.69,1.01);
 
 }
 .textInputMessage{
-    width: 90%;
+    width: 88%;
     height: calc(var(--index) * 1);
     margin: 0;
     border-radius: 10px;
@@ -47,22 +47,23 @@ transition: cubic-bezier(.27,.4,.69,1.01);
 }
 
 .block_inputButton{
-    width: 10%;
+    width: 11%;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 .sendInputMessage{
     margin: 0;
-    width: calc(var(--index) * 1.4);
+    width: calc(var(--index) * 1.45);
     padding: 0;
     font-size: calc(var(--index) * .4);
     height: calc(var(--index) * 1.4);
     background: none;
     font-size: calc(var(--index) * 1);
-    color: black;
+    color: rgb(35, 35, 35);
     border-radius: 300px;
     cursor: pointer;
+
     
 }
 
