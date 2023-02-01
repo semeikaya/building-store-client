@@ -3,6 +3,12 @@ import { useDispatch, useSelector } from "react-redux"
 import { autocompleteProducts, getProducts } from "../../features/productsSlice"
 import Card from "./Card"
 import styles from "./Main.module.css"
+import img from "./Vector (1).png"
+import img1 from "./Vector (2).png"
+import img3 from "./connect.png"
+import HowWork from "./HowWork/HowWork"
+
+
 
 
 const Main = () => {
@@ -101,7 +107,33 @@ const Main = () => {
                     </div>
                 </div>
 
-
+                <div className={styles.down_info}>
+                  <div className={styles.down_in_info}>
+                  <div className={styles.middle_img}>
+                  <img src={img3} className={styles.delivery} alt="" />
+                  </div>
+                  <div className={styles.text_text}>
+                    <p className={styles.text_in_down} >Поддерживаем круглосуточную связь с клиентами</p>
+                    </div>
+                  </div>
+                  <div className={styles.down_in_info}>
+                    <div className={styles.middle_img}>
+                      <img src={img} alt="" />
+                    </div>
+                    <div className={styles.text_text}>
+                    <p className={styles.text_in_down} >Варианты доставки с учетом вашего местоположения</p>
+                    </div>
+                  </div>
+                  <div className={styles.down_in_info}>
+                  <div className={styles.middle_img}>
+                  <img src={img1} alt="" />
+                  </div>
+                  <div className={styles.text_text}>
+                    <p className={styles.text_in_down} >Легкий заказ стройматериалов, как в интернет-магазине</p>
+                    </div>
+                  </div>
+                </div>
+                
 
 
                 </div>
@@ -110,7 +142,7 @@ const Main = () => {
                 <div className={styles.square_orange}></div>
                 <div className={styles.square_orange1}></div>
 
-               
+                
                 
         </div>
         <div className={`${bol === "true" ? styles.modal_window : null} `}>
@@ -118,9 +150,14 @@ const Main = () => {
 
                   </div>
         <button onClick={() => setBol("false")} style={{position: "fixed"}} className={`${bol === "true" ? styles.podlozhka : null} `}>
-
-
             </button>
+
+
+        <div className={styles.podlozhka_main}></div>
+
+
+        <HowWork/>
+        
 
     </>
 }

@@ -6,6 +6,7 @@ import {
   newChat,
   sendMessage,
 } from "../../features/chatSlice";
+
 import styles from "./Chat.module.css";
 
 const Chat = () => {

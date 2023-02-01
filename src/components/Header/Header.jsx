@@ -48,7 +48,20 @@ const Header = () => {
               <img className={styles.basket} src={basket} alt="basket" />
             </NavLink>
           </div>
+          
         </div>
+        {
+          <NavLink
+              to="/login"
+              className={({ isActive }) =>
+                isActive ? styles.regist : styles.notActiveRegist
+              }
+            >
+              Регистрация/Вход
+            </NavLink>
+
+        }
+        
       </div>
     </>
   );
