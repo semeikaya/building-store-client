@@ -55,3 +55,19 @@
 cursor: pointer;
 width: calc(var(--index) * 3);
 }
+
+
+.regist, .notActiveRegist{
+  position: absolute;
+  z-index: 11;
+  right: 10px;
+  text-decoration: none;
+  color: white;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  padding-right: calc(var(--index) * 1.4);
+  font-size: calc(var(--index) * .7);
+}
+
+.regist{
+
+}
