@@ -9,7 +9,7 @@ const initialState = {
 
 export const addCart = createAsyncThunk(
   "cart/add",
-  async ({ productId, count }, thunkAPI) => {
+  async ({ product, count }, thunkAPI) => {
     const state = thunkAPI.getState();
     try {
       const res = await fetch("http://localhost:4040/users/addcart", {
@@ -18,7 +18,7 @@ export const addCart = createAsyncThunk(
           "Content-Type": "application/json",
           Authorization: `Bearer ${state.cartReducer.token}`,
         },
-        body: JSON.stringify({ productId, count }),
+        body: JSON.stringify({ product, count }),
       });
       const products = await res.json();
       if (products.error) {
@@ -31,18 +31,48 @@ export const addCart = createAsyncThunk(
   }
 );
 
-export const getCart = createAsyncThunk("cart/get", async (_, thunkAPI) => {
+export const removeProduct = createAsyncThunk(
+  "cart/remove",
+  async (productId, thunkAPI) => {
+    const state = thunkAPI.getState();
+
+    try {
+      const res = await fetch(
+        "http://localhost:4040/users/removeproductincart",
+        {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${state.cartReducer.token}`,
+          },
+          body: JSON.stringify({ productId }),
+        }
+      );
+      const products = await res.json();
+      if (products.error) {
+        return thunkAPI.rejectWithValue(products.error);
+      }
+      return products;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
+export const getCart = createAsyncThunk("cart/get", async (local, thunkAPI) => {
   const state = thunkAPI.getState();
   try {
     const res = await fetch("http://localhost:4040/users/getcart", {
-      method: "GET",
+      method: "POST",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${state.cartReducer.token}`,
       },
+      body: JSON.stringify({ local: local }),
     });
+
     const products = await res.json();
-    console.log(products);
+
     if (products.error) {
       return thunkAPI.rejectWithValue(products.error);
     }
@@ -67,6 +97,19 @@ export const cartReducer = createSlice({
         state.cart = action.payload;
       })
       .addCase(addCart.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      });
+    builder
+      .addCase(removeProduct.pending, (state) => {
+        state.error = false;
+        state.loading = true;
+      })
+      .addCase(removeProduct.fulfilled, (state, action) => {
+        state.error = false;
+        state.cart = action.payload;
+      })
+      .addCase(removeProduct.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
       })
