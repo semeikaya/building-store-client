@@ -1,14 +1,16 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addCart, getCart } from "../../features/cartSlice";
+import { addCart, getCart, removeProduct } from "../../features/cartSlice";
 import styles from "./Main.module.css";
 
 const Card = (props) => {
   const products = props.products;
+  const local = JSON.parse(localStorage.getItem("cartProduct"));
   const token = useSelector((state) => state.cartReducer.token);
   const [localProducts, setLocalProducts] = useState([]);
-  const cartUserProducts = useSelector((state) => state.cartReducer);
+  const cartUserProducts = useSelector((state) => state.cartReducer.cart);
   const dispatch = useDispatch();
+
   useEffect(() => {
     const localProduct = localStorage.getItem("cartProduct") || "[]";
     if (localProduct === "[]") {
@@ -19,13 +21,15 @@ const Card = (props) => {
   }, []);
 
   useEffect(() => {
-    dispatch(getCart());
+    if (token) {
+      dispatch(getCart(local));
+    }
   }, [dispatch]);
 
-  function addProduct(productId, count) {
+  function addProduct(product, count) {
     if (!token) {
       let products = JSON.parse(localStorage.getItem("cartProduct"));
-      products.push(productId);
+      products.push(product);
       const listLength = products.length - 1;
       const result = products.map((item, i) => {
         if (i === listLength) {
@@ -37,20 +41,26 @@ const Card = (props) => {
       setLocalProducts(result);
       localStorage.setItem("cartProduct", JSON.stringify(result));
     } else {
-      dispatch(addCart({ productId, count }));
+      dispatch(addCart({ product, count }));
     }
   }
 
-  function removeProduct(productId) {
+  function removeProducts(product) {
     if (!token) {
       let products = JSON.parse(localStorage.getItem("cartProduct"));
       const result = products.filter((item, i) => {
-        return item._id !== productId._id;
+        return item._id !== product._id;
       });
       setLocalProducts(result);
       localStorage.setItem("cartProduct", JSON.stringify(result));
     } else {
-      dispatch(addCart({ productId }));
+      let products = JSON.parse(localStorage.getItem("cartProduct"));
+      const result = products.filter((item, i) => {
+        return item._id !== product._id;
+      });
+      setLocalProducts(result);
+      localStorage.setItem("cartProduct", JSON.stringify(result));
+      dispatch(removeProduct(product._id));
     }
   }
 
@@ -58,18 +68,22 @@ const Card = (props) => {
     <>
       {products.length > 0
         ? products.map((item) => {
-            const buttonStat = () => {
-              if (localProducts === null) {
-                return null;
-              } else {
-                const res = localProducts.filter((product) => {
-                  return product._id === item._id;
-                });
-                return res.length;
-              }
-            };
-            const disabled = buttonStat();
 
+            const buttonStatusLocal = () => {
+              const res = localProducts.filter((product) => {
+                return product._id === item._id;
+              });
+              return res.length;
+            };
+
+            const buttonStatusUser = () => {
+              const res = cartUserProducts.filter((product) => {
+                return product.productId._id === item._id;
+              });
+              return res.length;
+            };
+            const disabledLocal = buttonStatusLocal();
+            const disabledUser = buttonStatusUser();
             return (
               <div key={item._id} className={styles.block_of_searched}>
                 <div className={styles.up_block}>
@@ -114,13 +128,13 @@ const Card = (props) => {
                     </div>
                   </div>
                 </div>
-                {disabled === 1 ? (
+                {disabledLocal === 1 || disabledUser === 1 ? (
                   <div className={styles.in_down}>
                     <div className={styles.remove_product}>
                       <input
                         type="button"
                         onClick={() => {
-                          removeProduct(item);
+                          removeProducts(item);
                         }}
                         value="УДАЛИТЬ ЗАКАЗ"
                       />
