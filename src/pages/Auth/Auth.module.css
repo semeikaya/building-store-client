@@ -1,0 +1,165 @@
+.body {
+  position: absolute;
+  width: 458px;
+  min-height: 720px;
+  border-radius: 15px;
+  left: 391px;
+  top: 257px;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+.header {
+  display: flex;
+  justify-content: space-around;
+  width: 200px;
+  margin-left: 159px;
+  margin-top: 20px;
+}
+.singUpText {
+  position: absolute;
+  top: 20px;
+
+  margin-right: 210px;
+  font-size: 25px;
+  color: black;
+  text-decoration: none;
+}
+.form {
+  width: 300px;
+  align-items: center;
+  margin-left: 80px;
+  margin-top: 50px;
+}
+.name {
+  width: 500px;
+}
+.email {
+  width: 500px;
+}
+.emailText {
+  margin-top: 10px;
+}
+.password {
+  width: 500px;
+}
+.passwordText {
+  margin-top: 10px;
+}
+.password2 {
+  width: 500px;
+}
+.passwordText2 {
+  margin-top: 10px;
+}
+.button {
+  width: 250px;
+  text-align: center;
+  border-radius: 9px;
+  background-color: orange;
+  color: white;
+  height: 50px;
+  border: none;
+  margin-top: 27px;
+  cursor: pointer;
+  font-size: 15px;
+}
+.error {
+  -webkit-box-shadow: 0px 6px 5px 0px rgba(255, 0, 0, 0.44);
+  -moz-box-shadow: 0px 6px 5px 0px rgba(255, 0, 0, 0.44);
+  box-shadow: 0px 6px 5px 0px rgba(255, 0, 0, 0.44);
+  width: 500px;
+}
+.errorName {
+  color: red;
+  margin-top: 5px;
+}
+.errorEmail {
+  color: red;
+  margin-top: 7px;
+}
+.errorPassword {
+  color: red;
+  margin-top: 5px;
+}
+.errorPassword2 {
+  color: red;
+  margin-top: 5px;
+}
+.errorPassword3 {
+  color: red;
+  margin-top: 5px;
+}
+.textSocset {
+  margin-top: 70px;
+  margin-left: 83px;
+  width: 600px;
+}
+.icons {
+  margin-left: 83px;
+  margin-top: 20px;
+  display: flex;
+}
+.vkDiv {
+  cursor: pointer;
+  width: 150px;
+  height: 30px;
+  color: white;
+  display: flex;
+  background-color: steelblue;
+}
+.vkImg {
+  width: 30px;
+  height: 30px;
+}
+.vkText {
+  margin-top: 8px;
+  margin-left: 20px;
+  font-size: 10px;
+}
+.fbDiv {
+  cursor: pointer;
+  margin-left: 20px;
+  width: 150px;
+  height: 30px;
+  color: white;
+  display: flex;
+  background-color: darkslateblue;
+}
+.fbImg {
+  width: 30px;
+  height: 30px;
+}
+.fbText {
+  margin-top: 8px;
+  margin-left: 20px;
+  font-size: 10px;
+}
+.googleDiv {
+  cursor: pointer;
+  margin-left: 20px;
+  width: 150px;
+  height: 30px;
+  color: blue;
+  border: 1px solid blue;
+  display: flex;
+}
+.googleImg {
+  margin-left: 3px;
+  width: 25x;
+  height: 25px;
+  margin-top: 2px;
+}
+.googleText {
+  margin-top: 5px;
+  margin-left: 20px;
+  font-size: 15px;
+}
+.end {
+  width: 200px;
+  position: absolute;
+  margin-left: 300px;
+  bottom: 120px;
+}
+.end2 {
+  color: black;
+  text-decoration: none;
+}

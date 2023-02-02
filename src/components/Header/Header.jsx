@@ -44,9 +44,10 @@ const Header = () => {
             >
               Контакты
             </NavLink>
-            <NavLink to="/cart" >
+            <NavLink to="/cart">
               <img className={styles.basket} src={basket} alt="basket" />
             </NavLink>
+           
           </div>
         </div>
       </div>
