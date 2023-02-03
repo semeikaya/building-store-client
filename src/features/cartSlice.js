@@ -5,6 +5,7 @@ const initialState = {
   cart: [],
   error: false,
   loading: false,
+  removeLoader: false,
 };
 
 export const addCart = createAsyncThunk(
@@ -94,6 +95,7 @@ export const cartReducer = createSlice({
       })
       .addCase(addCart.fulfilled, (state, action) => {
         state.error = false;
+        state.loading = false;
         state.cart = action.payload;
       })
       .addCase(addCart.rejected, (state, action) => {
@@ -103,10 +105,11 @@ export const cartReducer = createSlice({
     builder
       .addCase(removeProduct.pending, (state) => {
         state.error = false;
-        state.loading = true;
+        state.removeLoader = true;
       })
       .addCase(removeProduct.fulfilled, (state, action) => {
         state.error = false;
+        state.removeLoader = false;
         state.cart = action.payload;
       })
       .addCase(removeProduct.rejected, (state, action) => {
@@ -118,6 +121,7 @@ export const cartReducer = createSlice({
         state.loading = true;
       })
       .addCase(getCart.fulfilled, (state, action) => {
+        state.loading = false;
         state.error = false;
         state.cart = action.payload;
       })
