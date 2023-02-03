@@ -62,6 +62,7 @@ const Auth = () => {
   };
 
   return (
+    <div className={styles.bod}>
     <div className={styles.body}>
       <div className={styles.header}>
         <Link to="/auth" className={styles.singUpText}>
@@ -173,6 +174,7 @@ const Auth = () => {
         <button className={styles.button}>РЕГИСТРАЦИЯ</button>
         <div className={styles.end}>Уже есть аккаунт? <Link className={styles.end2} to='/login'><b>Войти</b></Link></div> 
       </form>
+    </div>
     </div>
   );
 };

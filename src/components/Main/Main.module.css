@@ -230,7 +230,7 @@ background: none;
   overflow: scroll;
   animation-name: modal;
   animation-duration: 1s;
-
+ 
   
 }
 @keyframes modal{
