@@ -3,6 +3,7 @@ import Header from "../../components/Header/Header";
 import { Outlet } from "react-router-dom";
 import styles from "./Layout.module.css";
 import Chat from "../Chat/Chat";
+import Footer from "../Footer/Footer";
 
 
 const Layout = () => {
@@ -14,7 +15,7 @@ const Layout = () => {
       <Chat/>
         
       </main>
-      <footer className={styles.footer}></footer>
+      <Footer/>
     </div>
   );
 };

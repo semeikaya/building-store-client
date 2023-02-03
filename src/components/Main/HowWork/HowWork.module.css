@@ -12,7 +12,7 @@
 .main{
     width: 70%;
     margin: 0 auto;
-    height: calc(var(--index) * 19.2);
+    height: calc(var(--index) * 22.2);
     background-color: white;
     display: flex;
     flex-direction: column;
@@ -43,6 +43,29 @@
 .first img{
   width: calc(var(--index) * 3.3);
   margin-bottom: calc(var(--index) * .9);
+ 
+}
+
+.img_anim, .img_anim1, .img_anim2, .img_anim3{
+  animation-name: povorot;
+  animation-duration: 6.1s;
+  animation-delay: 10;
+  transition: 1s linear;
+  animation-iteration-count: infinite;
+
+}
+.img_anim1{
+  animation-duration: 5s;
+  animation-name: povorot_left;
+
+}
+.img_anim2{
+  animation-duration: 6.4s;
+
+}
+.img_anim3{
+  animation-duration: 4.4s;
+
 }
 
 .clipboard_anim{
@@ -92,3 +115,23 @@
   font-size: calc(var(--index) * .7);
 }
 
+
+@keyframes povorot{
+0%{
+    transform: rotate3d(0, 1, 0, 0deg);
+  }
+  100%{
+    transform: rotate3d(0, 1, 0, 720deg);
+  }
+ 
+}
+
+@keyframes povorot_left{
+  0%{
+      transform: rotate3d(0, 1, 0, 0deg);
+    }
+    100%{
+      transform: rotate3d(0, 1, 0, -720deg);
+    }
+   
+  }

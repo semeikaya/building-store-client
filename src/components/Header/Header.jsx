@@ -51,7 +51,10 @@ const Header = () => {
           </div>
           
         </div>
-        {
+        { localStorage.getItem("token") ? <button className={styles.regist}  onClick={() => {
+          localStorage.removeItem("token")
+          window.location.reload()
+        }}>Выйти</button> :
           <NavLink
               to="/login"
               className={({ isActive }) =>

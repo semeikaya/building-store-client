@@ -13,6 +13,7 @@
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
+  padding-bottom: calc(var(--index) * 2);
 }
 
 .textContact {

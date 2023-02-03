@@ -189,6 +189,7 @@ const Cart = () => {
         <div className={styles.cart_is_empty}>Корзина пуста</div>
       )}
     </div>
+    
   );
 };
 
