@@ -3,6 +3,13 @@ import { useDispatch, useSelector } from "react-redux"
 import { autocompleteProducts, getProducts } from "../../features/productsSlice"
 import Card from "./Card"
 import styles from "./Main.module.css"
+import img from "./Vector (1).png"
+import img1 from "./Vector (2).png"
+import img3 from "./connect.png"
+import HowWork from "./HowWork/HowWork"
+
+
+
 
 const Main = () => {
 
@@ -40,14 +47,13 @@ const Main = () => {
       }
       let time = setTimeout(() => {
         setError("")
-      }, 3000)
+      }, 2000)
       
     }
 
     useEffect(() => {
         dispatch(autocompleteProducts(value));
       }, [dispatch, value]);
-
 
       const findArr = (e) => {
           if(e.target.value != ""){
@@ -75,7 +81,7 @@ const Main = () => {
                 <div className={styles.calc_center}>
                 <div className={styles.main_info}>
                     <p>Быстрый расчет стоимости 
-                    стройматериалов и доставки по всей России <p className={styles.orange_text}>с использованием искусственного интеллекта</p></p>
+                    стройматериалов и доставки по всей России <span className={styles.orange_text}>с использованием искусственного интеллекта</span></p>
                 </div>
                 <div className={styles.calc_info}>
                     <div className={styles.material_block}>
@@ -97,11 +103,37 @@ const Main = () => {
                     </div>
                     <div className={styles.button_block}>
                         
-                        <input type="button" value="РАССЧИТАТЬ" onClick={() => address.length > 0 && metres3.length > 0 && selectedMaterial === "true" ? setBol("true") : handleError()} className={styles.calc_input} placeholder="Выберите материал"/>
+                        <input type="button" value="РАССЧИТАТЬ" onClick={() => address.length > 0 && metres3.length > 0 && selectedMaterial === "true" ? setBol("true") : error === "" ? handleError() : null} className={styles.calc_input} placeholder="Выберите материал"/>
                     </div>
                 </div>
 
-
+                <div className={styles.down_info}>
+                  <div className={styles.down_in_info}>
+                  <div className={styles.middle_img}>
+                  <img src={img3} className={styles.delivery} alt="" />
+                  </div>
+                  <div className={styles.text_text}>
+                    <p className={styles.text_in_down} >Поддерживаем круглосуточную связь с клиентами</p>
+                    </div>
+                  </div>
+                  <div className={styles.down_in_info}>
+                    <div className={styles.middle_img}>
+                      <img src={img} alt="" />
+                    </div>
+                    <div className={styles.text_text}>
+                    <p className={styles.text_in_down} >Варианты доставки с учетом вашего местоположения</p>
+                    </div>
+                  </div>
+                  <div className={styles.down_in_info}>
+                  <div className={styles.middle_img}>
+                  <img src={img1} alt="" />
+                  </div>
+                  <div className={styles.text_text}>
+                    <p className={styles.text_in_down} >Легкий заказ стройматериалов, как в интернет-магазине</p>
+                    </div>
+                  </div>
+                </div>
+                
 
 
                 </div>
@@ -110,7 +142,7 @@ const Main = () => {
                 <div className={styles.square_orange}></div>
                 <div className={styles.square_orange1}></div>
 
-               
+                
                 
         </div>
         <div className={`${bol === "true" ? styles.modal_window : null} `}>
@@ -118,10 +150,15 @@ const Main = () => {
 
                   </div>
         <button onClick={() => setBol("false")} style={{position: "fixed"}} className={`${bol === "true" ? styles.podlozhka : null} `}>
-
-
             </button>
-            
+
+
+        <div className={styles.podlozhka_main}></div>
+
+
+        <HowWork/>
+        
+
     </>
 }
 

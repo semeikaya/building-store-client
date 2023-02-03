@@ -1,56 +1,131 @@
-import { createAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  token: localStorage.getItem("products"),
+  token: localStorage.getItem("token"),
+  cart: [],
+  error: false,
+  loading: false,
 };
 
 export const addCart = createAsyncThunk(
   "cart/add",
-  async (productId, thunkAPI) => {
+  async ({ product, count }, thunkAPI) => {
+    const state = thunkAPI.getState();
     try {
-      const res = await fetch("http://localhost:4040/users/signup", {
+      const res = await fetch("http://localhost:4040/users/addcart", {
         method: "POST",
-        headers: { "Content-type": "application/json" },
-        body: JSON.stringify({ productId }),
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${state.cartReducer.token}`,
+        },
+        body: JSON.stringify({ product, count }),
       });
       const products = await res.json();
-      if (json.error) {
-        return thunkAPI.rejectWithValue(json.error);
+      if (products.error) {
+        return thunkAPI.rejectWithValue(products.error);
       }
-      localStorage.setItem("products", json);
-      return json;
+      return products;
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
     }
   }
 );
 
-export const cartSlice = createSlice({
+export const removeProduct = createAsyncThunk(
+  "cart/remove",
+  async (productId, thunkAPI) => {
+    const state = thunkAPI.getState();
+
+    try {
+      const res = await fetch(
+        "http://localhost:4040/users/removeproductincart",
+        {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${state.cartReducer.token}`,
+          },
+          body: JSON.stringify({ productId }),
+        }
+      );
+      const products = await res.json();
+      if (products.error) {
+        return thunkAPI.rejectWithValue(products.error);
+      }
+      return products;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
+export const getCart = createAsyncThunk("cart/get", async (local, thunkAPI) => {
+  const state = thunkAPI.getState();
+  try {
+    const res = await fetch("http://localhost:4040/users/getcart", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${state.cartReducer.token}`,
+      },
+      body: JSON.stringify({ local: local }),
+    });
+
+    const products = await res.json();
+
+    if (products.error) {
+      return thunkAPI.rejectWithValue(products.error);
+    }
+    return products;
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error);
+  }
+});
+
+export const cartReducer = createSlice({
   name: "cart",
   initialState,
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(logOut, (state) => {
-        localStorage.removeItem("token");
-        state.token = localStorage.getItem("token");
-      })
-      .addCase(createUser.pending, (state) => {
-        state.error = null;
+      .addCase(addCart.pending, (state) => {
+        state.error = false;
         state.loading = true;
-        state.signUp = true;
       })
-      .addCase(createUser.fulfilled, (state, action) => {
-        state.error = null;
-        state.signUp = false;
-        state.token = action.payload;
+      .addCase(addCart.fulfilled, (state, action) => {
+        state.error = false;
+        state.cart = action.payload;
       })
-      .addCase(createUser.rejected, (state, action) => {
-        state.signUp = false;
+      .addCase(addCart.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      });
+    builder
+      .addCase(removeProduct.pending, (state) => {
+        state.error = false;
+        state.loading = true;
+      })
+      .addCase(removeProduct.fulfilled, (state, action) => {
+        state.error = false;
+        state.cart = action.payload;
+      })
+      .addCase(removeProduct.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+      .addCase(getCart.pending, (state) => {
+        state.error = false;
+        state.loading = true;
+      })
+      .addCase(getCart.fulfilled, (state, action) => {
+        state.error = false;
+        state.cart = action.payload;
+      })
+      .addCase(getCart.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
       });
   },
 });
 
-export default cartSlice.reducer;
+export default cartReducer.reducer;

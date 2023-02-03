@@ -17,8 +17,9 @@
     justify-content: space-between;
     animation-name: chat;
     animation-duration: 1s;
-    background: rgb(255,107,0);
-background: linear-gradient(163deg, rgba(255,107,0,1) 0%, rgba(255,156,0,1) 100%);
+    
+background: rgb(254,242,229);
+background: linear-gradient(90deg, rgba(254,242,229,1) 0%, rgba(241,246,241,1) 100%);
 transition: cubic-bezier(.27,.4,.69,1.01);
     
 }
@@ -35,50 +36,52 @@ transition: cubic-bezier(.27,.4,.69,1.01);
 
 }
 .textInputMessage{
-    width: 90%;
+    width: 88%;
     height: calc(var(--index) * 1);
     margin: 0;
     border-radius: 10px;
-    background-color: rgb(255, 255, 255);
-    color: rgb(255,107,0);
+    background-color: rgb(52, 52, 52);
+    color: rgb(255, 255, 255);
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 
 }
 
 .block_inputButton{
-    width: 10%;
+    width: 11%;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 .sendInputMessage{
     margin: 0;
-    width: calc(var(--index) * 1.4);
+    width: calc(var(--index) * 1.45);
     padding: 0;
     font-size: calc(var(--index) * .4);
     height: calc(var(--index) * 1.4);
     background: none;
     font-size: calc(var(--index) * 1);
-    color: white;
+    color: rgb(52, 52, 52);
     border-radius: 300px;
     cursor: pointer;
+    
+
     
 }
 
 .flag{
-    width: calc(var(--index) * 4.4);
+    width: calc(var(--index) * 15.8);
     height: calc(var(--index) * 1.7);
     position: fixed;
     z-index: 107;
     background-color: rgb(255, 255, 255);
-    right: -2px;
+    right: calc(var(--index) * -11.8);
     bottom: calc(((100vh) - 1vh * 95));
     text-align: start;
     margin: 0;
     padding: 0;
     padding-left: 10px;
     cursor: pointer;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.239);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.169);
     animation-name: flag;
     animation-duration: 1s;
 
@@ -88,30 +91,45 @@ transition: cubic-bezier(.27,.4,.69,1.01);
 
 }
 
-.text_block{
-
+.text_block, .your_text_block{
+    margin-top: calc(var(--index) * .3);
     max-width: calc(1vw * 17.4);
-    border-radius: 3px;
-    padding-left: calc(var(--index) * .5);
-    padding-top: calc(var(--index) * .2);
-    padding-bottom: calc(var(--index) * .2);
+    padding-left: calc(var(--index) * 1);
+    padding-right: calc(var(--index) * 1);
+    border-radius: calc(var(--index) * .5);
+    padding-top: calc(var(--index) * .3);
+    padding-bottom: calc(var(--index) * .3);
     color: rgb(255, 255, 255);
-
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.134);
     box-sizing: border-box;
+    background: rgb(255,107,0);
+background: linear-gradient(163deg, rgba(255,107,0,1) 0%, rgba(255,156,0,1) 100%);
 
     
+}
+
+
+.your_text_block{
+    background: rgb(235, 233, 232);
+    background: linear-gradient(163deg, rgb(226, 129, 60) 0%, rgba(255,156,0,1) 100%);
+    max-width: calc(1vw * 17.4);
+
 }
 .message{
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-size: calc(var(--index) * .67);
+    
+
+    
 }
 
 .header{
 
     height: calc(var(--index) * 1.2);
     padding-left: calc(var(--index) * .5);
+    
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: end;
 }
 
@@ -124,33 +142,61 @@ transition: cubic-bezier(.27,.4,.69,1.01);
     font-size: calc(var(--index) * 1);
     margin: 0;
     cursor: pointer;
-    color: white;
+    color: black;
     padding: 0;
-    padding-right: calc(var(--index) * 1.67);
+    padding-right: calc(var(--index) * 1.2);
 }
 
 .messages{
     overflow-y: scroll;
-    height: calc(var(--index) * 17);
-    padding-left: calc(var(--index) * .3);
+    height: calc(var(--index) * 23);
+    padding-left: calc(var(--index) * .35);
+    padding-bottom: calc(var(--index) * .55);
+    
     
 }
 
-.mess{
+
+
+.mess, .your_mess{
     margin-top: calc(var(--index) * 1);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     min-height: calc(var(--index) * 2.4);
     word-wrap: break-word;
+    width: max-content;
+    
+    padding-left: calc(var(--index) * .3);
+    
+    
+
 
 }
 
-.name_block p{
-    color: white;
+.your_mess{
+    display: flex;
+    align-items: flex-end;
+    padding-right: calc(var(--index) * .8);
+    width: 100%;
+}
+
+.name_block{
+padding-left: calc(var(--index) * 0.09);
+}
+.name_block p, .you p{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: black;
     font-size: calc(var(--index) * .6);
 
 
+
+
+
+}
+.chat_blocks{
+    color: rgb(31, 31, 31);
+    border-color: rgb(31, 31, 31);
 }
 
 @keyframes chat {
@@ -193,14 +239,6 @@ transition: cubic-bezier(.27,.4,.69,1.01);
     }
 }
 
-@keyframes flag {
-    0% {
-        transform: translateX(90px);
-    }
-    100% {
-        transform: translateX(0px);
-    }
-}
 
 
 .chat_blocks{
@@ -209,7 +247,53 @@ transition: cubic-bezier(.27,.4,.69,1.01);
     width: 98%;
     background: none;
     cursor: pointer;
-    border: 1px solid white;
-    border-radius: 10px;
+    border: 1px solid rgb(31, 31, 31);
+    border-radius: 5px;
     margin-top: calc(var(--index) * 1.2);
+}
+
+.vhod{
+    animation-name: vhod;
+    animation-duration: 4.1s;
+}
+
+@keyframes vhod {
+    0%{
+        transform: translateX(0px);
+
+    }
+    50%{
+        transform: translateX(calc(var(--index) * -11.4));
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    }
+    100%{
+        transform: translateX(0px);
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.169);
+        
+
+    }
+}
+
+
+.img_update{
+    width: 14px;
+}
+
+
+.date, .your_date, .your_date_line{
+    display: flex;
+    justify-content: end;
+    font-size: calc(var(--index) * .45);
+    padding-top: 1px;
+    padding-bottom: 0px;
+
+}
+
+.date{
+    justify-content: start;
+
+}
+
+.your_date_line{
+
 }

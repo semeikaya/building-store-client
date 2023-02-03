@@ -49,7 +49,20 @@ const Header = () => {
             </NavLink>
            
           </div>
+          
         </div>
+        {
+          <NavLink
+              to="/login"
+              className={({ isActive }) =>
+                isActive ? styles.regist : styles.notActiveRegist
+              }
+            >
+              Регистрация/Вход
+            </NavLink>
+
+        }
+        
       </div>
     </>
   );

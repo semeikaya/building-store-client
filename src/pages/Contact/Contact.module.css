@@ -1,165 +1,101 @@
-.textContact {
-  position: absolute;
-  width: 213px;
-  height: 40px;
-  left: 200px;
-  top: 198px;
-  font-family: "Gotham Pro";
-  font-style: normal;
-  font-weight: 700;
-  font-size: 42px;
-  line-height: 40px;
+:root {
+  --index: calc(1vw + 1vh);
+}
 
-  color: #000000;
+.left {
+  width: 35%;
+  padding-top: calc(var(--index) * 4);
+}
+
+.mainContacts {
+  width: 70%;
+  max-height: 900px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+.textContact {
+  font-size: calc(var(--index) * 2);
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
 }
 .body {
-  margin: 150px 362px 456px 190px;
-  width: 800px;
-  height: 500px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 }
 .info {
-  width: 250px;
-  height: 250px;
 }
 .messages {
-  width: 200px;
-  height: 100px;
+  margin-top: calc(var(--index) * 2);
 }
 .social_network {
-  width: 200px;
-  height: 100px;
-  margin-top: 40px;
+  margin-top: calc(var(--index) * 1.9);
 }
 .address {
-  width: 350px;
-  height: 70px;
+  display: flex;
+  margin-top: calc(var(--index) * 1.8);
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
 }
 .phone_number {
-  width: 300px;
-  height: 70px;
-
   display: flex;
-
-  padding: 5px;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: calc(var(--index) * 1.2);
 }
 .email {
-  width: 300px;
-  height: 70px;
   display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: calc(var(--index) * 1.2);
 }
 .address_img {
-  width: 5px;
-  height: 5px;
-  margin-left: 5px;
+  width: 6%;
 }
 .address_text {
-  margin-left: 70px;
-  font-family: "Gotham Pro";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 20px;
-  text-align: center;
-
-  color: #000000;
+  width: 90%;
 }
 .address_img2 {
-  height: 19.87032127380371px;
-  width: 19.928199768066406px;
-  left: 1.98193359375px;
-  margin-top: 20px;
-  border-radius: 0px;
+  width: 100%;
 }
 .telephone_img {
-  width: 50px;
-  height: 50px;
+  width: 6%;
 }
 .telephone_img2 {
-  height: 19.87032127380371px;
-  width: 19.928199768066406px;
-  left: 1.98193359375px;
-  margin-top: 17px;
-  border-radius: 0px;
 }
 .telephone_text {
-  margin-bottom: 10px;
-  margin-top: 13px;
-  margin-left: 20px;
-  height: 30px;
-  text-align: center;
-  font-family: "Gotham Pro";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 20px;
-  text-align: center;
-
-  color: #000000;
+  width: 90%;
 }
 .email_img_div {
-  width: 50px;
-  height: 50px;
 }
 .email_img {
-  width: 24px;
-  height: 24px;
-  margin-top: 17px;
-  margin-left: 5px;
 }
 .email_text {
-  margin-top: 20px;
-  text-align: center;
-  margin-left: 25px;
-  font-family: "Gotham Pro";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 15px;
-
-  color: #000000;
+  width: 90%;
 }
 .mes {
-  font-family: "Gotham Pro";
-  font-style: normal;
-  font-weight: 700;
-  font-size: 16px;
-  line-height: 123.2%;
-  color: #000000;
-  margin-left: 5px;
+  margin-bottom: calc(var(--index) * 0.7);
+  font-size: calc(var(--index) * 0.6.5);
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
 }
 .wh_img {
-  margin-left: 5px;
-  width: 38px;
-  height: 38px;
 }
 .vb_img {
-  width: 73px;
-  height: 45px;
 }
 .tg_img {
-  width: 38px;
-  height: 38px;
-  margin-top: 2px;
-  margin-left: 5px;
 }
 .icons {
-  margin-top: 10px;
   display: flex;
+  justify-content: space-between;
+  width: 45%;
+  align-items: flex-start;
 }
 .facebook {
-  margin-top: 10px;
-  width: 40px;
-  height: 40px;
-  margin-left: 5px;
+  margin-top: calc(var(--index) * 0.6);
 }
 .socset_text {
-  margin-left: 5px;
-  font-family: "Gotham Pro";
-  font-style: normal;
-  font-weight: 700;
-  font-size: 16px;
-  line-height: 123.2%;
-  /* identical to box height, or 20px */
-
-  color: #000000;
+  font-size: calc(var(--index) * 0.6.5);
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
 }

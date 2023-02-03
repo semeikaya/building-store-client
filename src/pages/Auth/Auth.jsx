@@ -1,11 +1,12 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
 import { authSingUp } from "../../features/authSlice";
 import styles from "../Auth/Auth.module.css";
 import fb from '../../components/Login/img/Fb.png'
 import vk from  '../../components/Login/img/Vk.png';
 import google from '../../components/Login/img/Google.png'
+import { useEffect } from "react";
 
 const Auth = () => {
   const [name, setName] = useState("");
@@ -35,6 +36,15 @@ const Auth = () => {
     setPassword("");
     setPassword2("");
   };
+  const token = useSelector((state) => state.authReducer.token)
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    if(token){
+        navigate('/')
+    }
+  }, [dispath, navigate, token])
+
 
   const handleIfError = (e) => {
     e.preventDefault();

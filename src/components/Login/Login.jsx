@@ -2,18 +2,27 @@ import styles from "../Login/Login.module.css";
 import vk from "../Login/img/Vk.png";
 import fb from "../Login/img/Fb.png";
 import google from "../Login/img/Google.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { authSingIn } from "../../features/authSlice";
+import { useEffect } from "react";
 
 const Login = () => {
   const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
 
   const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   const error = useSelector((state) => state.authReducer.error)
+  const token = useSelector((state) => state.authReducer.token)
+
+  useEffect(() => {
+    if(token){
+        navigate('/')
+    }
+  }, [dispatch, navigate, token])
 
   const handleloginValue = (e) => {
     setLogin(e.target.value);
@@ -94,7 +103,9 @@ const Login = () => {
 
       <div className={styles.buttons}>
         <div>
-          <button onClick={handleAdd} className={styles.button}>Войти</button>
+          <button 
+         
+          onClick={handleAdd} className={styles.button}>Войти</button>
         </div>
         <div>
           <Link className={styles.helpPassword}>Забыли пароль?</Link>{" "}

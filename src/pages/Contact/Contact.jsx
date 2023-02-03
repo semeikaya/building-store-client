@@ -12,7 +12,8 @@ import Feedback from "../../components/Feedback/Feedback";
 
 const Contact = () => {
   return (
-    <>
+    <> <div className={styles.mainContacts}>
+    <div className={styles.left}>
       <div className={styles.textContact}>Контакты</div>
       <div className={styles.body}>
         <div className={styles.info}>
@@ -60,7 +61,9 @@ const Contact = () => {
         </div>
         
       </div>
+      </div>
       <Feedback />
+      </div>
     </>
   );
 };
