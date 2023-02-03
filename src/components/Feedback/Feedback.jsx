@@ -5,7 +5,7 @@ import styles from "../Feedback/Feedback.module.css";
 import setIMG from "../Feedback/Vector.png";
 const Feedback = () => {
   const [name, setName] = useState("");
-  const [phone, setPhone] = useState("");
+  const [phone, setPhone] = useState("+7");
   const [email, setEmail] = useState("");
   const [text, setText] = useState("");
 
@@ -43,7 +43,11 @@ const Feedback = () => {
   const handleClick = (e) => {
     if (name.length === 0) {
       setError("name");
-    } else if (phone.length === 0) {
+    } else if (
+      phone.length === 0 ||
+      phone.split("")[0] !== "+" ||
+      phone.length < 12
+    ) {
       setError("phone");
     } else if (
       email.length === 0 ||
@@ -123,12 +127,14 @@ setTimeout(() => {
           <div className={styles.addButton}>
             <button
               onClick={() =>
-                name.length > 0 &&
-                phone.length > 0 &&
-                email.length > 0 &&
-                text.length > 0 &&
-                email.split("@").length === 2 &&
-                email.split("@")[1] === "gmail.com"
+                (name.length > 0 &&
+                  phone.length > 0 &&
+                  email.length > 0 &&
+                  text.length > 0 &&
+                  email.split("@").length === 2 &&
+                  email.split("@")[1] === "gmail.com" &&
+                  phone.split("")[0] === "+" &&
+                  phone.length > 12)
                   ? handleOnclick()
                   : error === "" ? handleClick() : null
               }
