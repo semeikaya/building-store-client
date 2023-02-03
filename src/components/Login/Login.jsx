@@ -39,6 +39,7 @@ const Login = () => {
 
     
   return (
+    <div className={styles.bod}>
     <div className={styles.loginBody}>
       <div className={styles.basicText}>Вход</div>
 
@@ -114,6 +115,7 @@ const Login = () => {
       
      
       
+    </div>
     </div>
     
   );
