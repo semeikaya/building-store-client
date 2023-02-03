@@ -1,0 +1,76 @@
+:root {
+    --index: calc(1vw + 1vh);
+  }
+
+.footer{
+    display: flex;
+    justify-content: center;
+    padding-top: calc(var(--index) * 1);
+    padding-bottom: calc(var(--index) * .5);
+    background-color: #3A394A;
+
+}
+
+.main{
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    color: white;
+}
+
+.top_left p{
+    font-size: calc(var(--index) * 1.3);
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
+}
+
+.top_left{
+    width: 25%;
+}
+
+.top{
+    display: flex;
+    justify-content: space-between;
+    border-bottom: .5px solid rgba(255, 255, 255, 0.342);
+    padding-bottom: calc(var(--index) * 1);
+
+}
+
+.link{
+    text-decoration: none;
+    display: block;
+    color: white;
+    margin-top: calc(var(--index) * .4);
+    cursor: pointer;
+    font-size: calc(var(--index) * .6);
+
+}
+
+.text_top{
+
+    font-size: calc(var(--index) * .7);
+
+}
+
+.top_right_middle{
+    width: 20%;
+}
+
+
+.link1{
+    text-decoration: none;
+    display: block;
+    color: white;
+    margin-top: calc(var(--index) * .5);
+    font-size: calc(var(--index) * .7);
+
+}
+
+.bottom{
+    display: flex;
+justify-content: center;
+    width: 100%;
+    padding-top: calc(var(--index) * 1);
+
+
+}

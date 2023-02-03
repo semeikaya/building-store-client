@@ -23,10 +23,11 @@ const Chat = () => {
   const [scroll, setScroll] = useState("");
   const [send, setSend] = useState([undefined, 0]);
   let date = new Date();
+  const difference =
+    date.getHours() - date.getUTCHours() < 0
+      ? date.getHours() - date.getUTCHours() + 24
+      : date.getHours() - date.getUTCHours();
 
-  
-
-  
   console.log(newMessages);
 
   useEffect(() => {
@@ -49,7 +50,6 @@ const Chat = () => {
   }, [chats]);
 
   if (newMessages === true) {
-
     dispatch(getChats());
     dispatch(getNewMessage());
     if (send[0] != undefined) {
@@ -75,7 +75,13 @@ const Chat = () => {
   }
 
   const handleSendMessage = (text, clientId) => {
-    dispatch(sendMessage({ text, clientId,  date: {hours: date.getUTCHours(), minutes: date.getUTCMinutes()}}));
+    dispatch(
+      sendMessage({
+        text,
+        clientId,
+        date: { hours: date.getUTCHours(), minutes: date.getUTCMinutes() },
+      })
+    );
     setText("");
 
     setTimeout(() => {
@@ -95,7 +101,7 @@ const Chat = () => {
   };
 
   const handleText = (e) => {
-    console.log(e)
+    console.log(e);
     setText(e.target.value);
   };
 
@@ -168,24 +174,82 @@ const Chat = () => {
                   return item1.messages.map((item) => {
                     return (
                       <>
-                        <div className={chats.length > 1 ? item1.admin === item.sender ? styles.your_mess : styles.mess : item1.client === item.sender ? styles.your_mess : styles.mess}>
-                          <div className={ chats.length > 1 ? item1.admin === item.sender ? styles.you : styles.name_block : item1.client === item.sender ? styles.you : styles.name_block}>
-                            <p>{chats.length > 1 ? item1.admin === item.sender ? "Вы" : item.name : item1.client === item.sender ? "Вы" :item.name}</p>
+                        <div
+                          className={
+                            chats.length > 1
+                              ? item1.admin === item.sender
+                                ? styles.your_mess
+                                : styles.mess
+                              : item1.client === item.sender
+                              ? styles.your_mess
+                              : styles.mess
+                          }
+                        >
+                          <div
+                            className={
+                              chats.length > 1
+                                ? item1.admin === item.sender
+                                  ? styles.you
+                                  : styles.name_block
+                                : item1.client === item.sender
+                                ? styles.you
+                                : styles.name_block
+                            }
+                          >
+                            <p>
+                              {chats.length > 1
+                                ? item1.admin === item.sender
+                                  ? "Вы"
+                                  : item.name
+                                : item1.client === item.sender
+                                ? "Вы"
+                                : item.name}
+                            </p>
                           </div>
-                          <div className={chats.length > 1 ? item1.admin === item.sender ? styles.your_text_block : styles.text_block : item1.client === item.sender ? styles.your_text_block : styles.text_block}>
+                          <div
+                            className={
+                              chats.length > 1
+                                ? item1.admin === item.sender
+                                  ? styles.your_text_block
+                                  : styles.text_block
+                                : item1.client === item.sender
+                                ? styles.your_text_block
+                                : styles.text_block
+                            }
+                          >
                             <p className={styles.message}>{item.text}</p>
-                            <div className={chats.length > 1 ? item1.admin === item.sender ?  styles.your_date : styles.date : item1.client === item.sender ? styles.your_date : styles.date}>
-                            <p>{`${(date.getHours() - date.getUTCHours() + item.date.hours) > 9 ? date.getHours() - date.getUTCHours() + item.date.hours : "0" + (date.getHours() - date.getUTCHours() + item.date.hours)}:${(date.getMinutes() - date.getUTCMinutes() + item.date.minutes) > 9 ? date.getMinutes() - date.getUTCMinutes() + item.date.minutes : "0" + (date.getMinutes() - date.getUTCMinutes() + item.date.minutes)}`}</p>
+                            <div
+                              className={
+                                chats.length > 1
+                                  ? item1.admin === item.sender
+                                    ? styles.your_date
+                                    : styles.date
+                                  : item1.client === item.sender
+                                  ? styles.your_date
+                                  : styles.date
+                              }
+                            >
+                              <p>{`${
+                                difference + item.date.hours > 24
+                                  ? difference + item.date.hours - 24 < 10
+                                    ? "0" + (difference + item.date.hours - 24)
+                                    : difference + item.date.hours - 24
+                                  : difference + item.date.hours < 10
+                                  ? "0" + (difference + item.date.hours)
+                                  : difference + item.date.hours
+                              }:${
+                                item.date.minutes < 10
+                                  ? "0" + item.date.minutes
+                                  : item.date.minutes
+                              }`}</p>
                             </div>
                           </div>
-                          
                         </div>
                       </>
                     );
                   });
                 })
               : chats.map((item, index) => {
-                
                   return item.messages.length > 0 ? (
                     <input
                       type="button"
@@ -193,7 +257,7 @@ const Chat = () => {
                       onClick={() => filterChats(item._id, item.client)}
                       value={item.messages[0].name}
                     />
-                  ): null;
+                  ) : null;
                 })}
           </div>
 
@@ -205,9 +269,9 @@ const Chat = () => {
                     type="text"
                     value={text}
                     onKeyDown={(e) => {
-                        if(e.key === "Enter"){
-                            handleSendMessage(text, item.client)
-                        }
+                      if (e.key === "Enter") {
+                        handleSendMessage(text, item.client);
+                      }
                     }}
                     onChange={handleText}
                     className={styles.textInputMessage}

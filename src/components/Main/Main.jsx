@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { autocompleteProducts, getProducts } from "../../features/productsSlice"
 import Card from "./Card"
@@ -7,6 +7,9 @@ import img from "./Vector (1).png"
 import img1 from "./Vector (2).png"
 import img3 from "./connect.png"
 import HowWork from "./HowWork/HowWork"
+import More from "./More/More"
+import Supliers from "./Supliers/Supliers"
+import Transport from "./Transport/Transport"
 
 
 
@@ -75,6 +78,8 @@ const Main = () => {
         changeSelect("true")
 
       }
+
+      
       
     return <>
         <div className={styles.calculation_window}>
@@ -145,7 +150,9 @@ const Main = () => {
                 
                 
         </div>
-        <div className={`${bol === "true" ? styles.modal_window : null} `}>
+        <div onMouseMove={(e) => {
+          document.body.style.cssText = `--modalY: ${e.clientY}px`
+        }} className={`${bol === "true" ? styles.modal_window : styles.modal_window1} `}>
                   <Card products={products} count={Number(metres3)} />
 
                   </div>
@@ -157,6 +164,9 @@ const Main = () => {
 
 
         <HowWork/>
+        <More/>
+        <Supliers/>
+        <Transport/>
         
 
     </>

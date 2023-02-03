@@ -3,10 +3,15 @@
   font-family: "Gotham Pro", Arial, sans-serif;
 }
 
+:root {
+  --index: calc(1vw + 1vh);
+}
+
 .catr_main_box {
   width: 70%;
   margin: auto;
   padding-top: 50px;
+  padding-bottom: calc(var(--index) * 4);
 }
 .cart_title {
   font-size: 42px;

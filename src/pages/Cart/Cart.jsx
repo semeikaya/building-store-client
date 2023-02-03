@@ -81,6 +81,7 @@ const Cart = () => {
         <div className={styles.form}>dsfsdfsdf</div>
       </div>
     </div>
+    
   );
 };
 

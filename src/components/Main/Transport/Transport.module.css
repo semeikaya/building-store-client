@@ -1,0 +1,43 @@
+:root {
+    --index: calc(1vw + 1vh);
+  }
+
+.transport{
+    width: 100vw;
+    height: calc(var(--index) * 22);
+    background-image: url(../Mask\ Group.png);
+    background-size: 100% 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.main{
+    width: 70%;
+    color: white;
+    margin-top: calc(var(--index) * 3);
+    margin-bottom: calc(var(--index) * 5);
+
+}
+
+.left{
+    width: 50%;
+}
+
+.mainText{
+    font-size: calc(var(--index) * 2);
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.textTop{
+    margin-top: calc(var(--index) * 1.2);
+}
+
+.but{
+    width: 50%;
+    padding: 0;
+    margin: 0;
+    margin-top: calc(var(--index) * 1);
+    background-color: #ff6b00;
+    color: white;
+    cursor: pointer;
+}
