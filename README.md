@@ -1,70 +1,73 @@
-# Getting Started with Create React App
+# Сайт по продаже шин
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Это групповой проект, выполненный студентами школы программирования Intocode, который представляет собой онлайн-магазин по продаже шин. 
 
-## Available Scripts
+## Функционал сайта
 
-In the project directory, you can run:
+* Авторизация
+* Фильтрация товаров по типу шин и авто
+* Добавление товара в корзину
+* Удаление товара из корзины
+* Переключатели "выездной монтаж" и "хранение товара", в заисимости от которых может варироваться цена. Переключатели есть как в корзине, так и на странице товара.
+* Доавление отзыва к товару только когда пользователь авторизован
 
-### `npm start`
+## Запуск проекта
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Для запуска проекта вам необходимо:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+1. Склонировать репозиторий
+```
+git clone https://github.com/semeikaya/tire-shop-client.git
+```
+2. Установить библиотеки
+```
+npm install
+```
+3. Заустить проект
+```
+npm start
+```
+## Технологии, которые были использованы
+<p>
+  <a href="https://ru.reactjs.org/">
+  <img alt="React" src="https://img.shields.io/badge/-React-45b8d8?style=for-the-badge&logo=react&logoColor=white" />
+  </a>
+  <img alt="Redux" src="https://img.shields.io/badge/-Redux-430098?style=for-the-badge&logo=redux&logoColor=white" />
+  <img alt="Redux-Thunk" src="https://img.shields.io/badge/-Redux_Thunk-white?style=for-the-badge&logo=Redux&logoColor=430098" />
+  <img alt="Redux-Logger" src="https://img.shields.io/badge/-Redux_Logger-430098?style=for-the-badge&logo=Redux&logoColor=white" />
+   <a href="https://reactrouter.com/en/main">
+<img alt="React-Router" src="https://img.shields.io/badge/-React_Router-black?style=for-the-badge&logo=react-router&logoColor=orange" />
+  </a>
+   <a href="https://nodejs.org/en/">
+<img alt="Nodejs" src="https://img.shields.io/badge/-Nodejs-43853d?style=for-the-badge&logo=Node.js&logoColor=white" />
+  </a>
+   <a href="https://git-scm.com/">
+<img alt="git" src="https://img.shields.io/badge/-Git-F05032?style=for-the-badge&logo=git&logoColor=white" />
+  </a>
+   <a href="">
+<img alt="JavaScript" src="https://img.shields.io/badge/-JavaScript-yellow?style=for-the-badge&logo=JavaScript&logoColor=white" />
+  </a>
+  <a href="https://mui.com/">
+<img alt="Material UI" src="https://img.shields.io/badge/-Material UI-4794b5?style=for-the-badge&logo=mui&logoColor=white" />
+  </a>
+   <a href="https://jwt.io/">
+     <img alt="JWT" src="https://img.shields.io/badge/-JSON Web Token-black?style=for-the-badge&logo=JSONWebTokens&logoColor=white" />
+  </a>
+  
+  ## Над проектом работали
+  
+  <h3><a href="https://github.com/MansoAb">
+     <img alt="Mansur" src="https://img.shields.io/badge/-Mansur_Abubakarov-black?style=for-the-badge&logo=github&logoColor=white" />
+  </a></h3>
+  <h3><a href="">
+    <img alt="Bers" src="https://img.shields.io/badge/-Bers_Yaskaev-black?style=for-the-badge&logo=github&logoColor=white" />
+  </a></h3>
+  <h3><a href="">
+    <img alt="Umar" src="https://img.shields.io/badge/-Umar_Gadaev-black?style=for-the-badge&logo=github&logoColor=white" />
+  </a></h3>
+   
+  
+  
+    
+  
+</p>
