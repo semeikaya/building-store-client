@@ -74,7 +74,7 @@ npm start
 - [x] Установка библиотек redux-toolkit, react-router-dom, material ui
 - [x] Установка на сервере библиотек bcrypt, cors, dotenv, express, jsonwebtoken, mongoose, morgan, multer, nodemon,prettier
 - [x] Добавление основных моделей, контроллеров, роутов и middleware
-- [ ] Настройка файла index.js для запуска сервера
+- [x] Настройка файла index.js для запуска сервера
 - [x] Первоначальная настройка муршрутизации на react-router-dom
 - [x] Создание страницы корзины
 - [x] Добавление товара в корзину как неавторизованному, так и авторизованному пользователю
